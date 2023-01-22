@@ -23,14 +23,5 @@ class AppTheme {
     ),
     useMaterial3: true,
     backgroundColor: AppColor.bgColor,
-    // primaryColor: AppColor.primary,
-    // colorScheme: const ColorScheme.light(primary: Colors.green),
-    // dialogBackgroundColor: AppColor.primary,
-    // dialogTheme: DialogTheme(
-    //   iconColor: AppColor.primary,
-    //   backgroundColor: AppColor.bgColor,
-    //   titleTextStyle: AppTextTheme.bodyText2.copyWith(color: AppColor.white),
-    //   contentTextStyle: AppTextTheme.bodyText2.copyWith(color: AppColor.white),
-    // ),
   );
 }

@@ -13,7 +13,6 @@ class AuthenticationBloc
     on<AuthenticateUser>(
       (event, emit) => _getAuthStatus(event, emit),
     );
-    // on<UserInfoRequested>((event, emit) => getUser);
   }
 
   final AuthenticationRepository _authenticationRepository;

@@ -13,7 +13,6 @@ class AppCalendarDialog {
       builder: (context) {
         final textTheme = Theme.of(context).textTheme;
         return Dialog(
-          // backgroundColor: AppColor.white,
           child: Wrap(
             children: [
               SfDateRangePicker(
