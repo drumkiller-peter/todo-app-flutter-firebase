@@ -14,7 +14,7 @@ dependencies:
   flutter_bloc: ^8.1.1
   equatable: ^2.0.5
   freezed_annotation: ^2.2.0
-  intl: ^0.18.0
+  intl: ^0.17.0
   dartz: ^0.10.1
   dio: ^4.0.6
   get_it: ^7.2.0
@@ -22,6 +22,13 @@ dependencies:
   json_serializable: ^6.5.4
   json_annotation: ^4.7.0
   firebase_core: ^2.4.1
+  firebase_auth: ^4.2.5
+  firebase_ui_auth: ^1.1.7
+  flutter_svg: ^1.1.6
+  form_builder_validators: ^8.4.0
+  cloud_firestore: ^4.3.1
+  syncfusion_flutter_datepicker: ^20.4.43
+  table_calendar: ^3.0.8
 
 dev_dependencies:
   flutter_test:
@@ -29,20 +36,23 @@ dev_dependencies:
 
   flutter_lints: ^2.0.0
   build_runner: ^2.3.3
+  flutter_gen_runner:
 
 flutter:
   uses-material-design: true
 
-  # assets:
-  # - assets/images/svg
-  # - assets/images/png
+  assets:
+    - assets/images/svg/
+    - assets/images/png/
 
   fonts:
-    - family: Poppins
+    - family: Quicksand
       fonts:
-        - asset: assets/fonts/Poppins-Regular.ttf
-          weight: 400
-        - asset: assets/fonts/Poppins-Medium.ttf
+        - asset: assets/fonts/Quicksand-Medium.ttf
           weight: 500
-        - asset: assets/fonts/Poppins-Bold.ttf
+        # - asset: assets/fonts/Quicksand-Regular.ttf
+        #   weight: 500
+        - asset: assets/fonts/Quicksand-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Quicksand-Bold.ttf
           weight: 700
