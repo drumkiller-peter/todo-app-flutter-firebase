@@ -100,7 +100,7 @@ class _AppTextFieldState extends State<AppTextField> {
           AppText(
             widget.titleText!,
             style: textTheme.bodyText2?.copyWith(
-              color: AppColor.black54,
+              color: AppColor.greyText,
             ),
           ),
           const SizedBox(height: 8),
@@ -133,7 +133,7 @@ class _AppTextFieldState extends State<AppTextField> {
                     fontStyle: FontStyle.italic),
                 counterText: "",
                 filled: widget.filled ?? true,
-                fillColor: widget.fillColor ?? AppColor.formFillColor,
+                fillColor: widget.fillColor ?? AppColor.bgColorLight,
                 label: widget.label != null
                     ? AppText(
                         widget.label ?? "",

@@ -1,4 +1,4 @@
-import 'package:flutter/animation.dart';
+import 'package:flutter/material.dart';
 
 class AppColor {
   AppColor._();
@@ -8,9 +8,13 @@ class AppColor {
   static const Color black = Color(0xff1B1B1D);
   static const Color bgColor = Color(0xff202442);
 
+  //Support Colors
+  static const Color cyan = Colors.cyanAccent;
+  static const Color blue = Color(0xff55d23c);
+
   // UI Component Color
   static const Color disabledButtonColor = Color(0xffDBDBDB);
-  static const Color formFillColor = Color(0xff353a61);
+  static const Color bgColorLight = Color(0xff353a61);
 
   //Text Colors
   static const Color secondaryTextColor = Color(0xff62678c);

@@ -28,15 +28,16 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     final response = await _authenticationRepository.loginWithEmail(authModel);
     if (!isClosed) {
       response.fold(
-        (l) => emit(
-          LoginFailure(l),
-        ),
-        (r) => emit(
+          (l) => emit(
+                LoginFailure(l),
+              ), (r) {
+        _authenticationRepository.setIsUserOnBoarded();
+        emit(
           LoginSuccess(
             AppString.welcome,
           ),
-        ),
-      );
+        );
+      });
     }
   }
 }

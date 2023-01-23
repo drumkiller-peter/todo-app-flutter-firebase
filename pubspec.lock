@@ -15,6 +15,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.12"
+  accordion:
+    dependency: "direct main"
+    description:
+      name: accordion
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.5.1"
   analyzer:
     dependency: transitive
     description:
@@ -420,6 +427,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.2.0"
+  get:
+    dependency: transitive
+    description:
+      name: get
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "4.6.5"
   get_it:
     dependency: "direct main"
     description:
@@ -651,6 +665,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.2.1"
+  scroll_to_index:
+    dependency: transitive
+    description:
+      name: scroll_to_index
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.0.1"
   shared_preferences:
     dependency: "direct main"
     description:
@@ -733,6 +754,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.99"
+  smooth_page_indicator:
+    dependency: "direct main"
+    description:
+      name: smooth_page_indicator
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.0+2"
   source_gen:
     dependency: transitive
     description:
