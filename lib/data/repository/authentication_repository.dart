@@ -92,4 +92,12 @@ class AuthenticationRepository {
       return false;
     }
   }
+
+  Future<void> setIsUserOnBoarded() async {
+    await _appPreference.setUserOnBoardedStatus();
+  }
+
+  bool getIsUserOnBoarded() {
+    return _appPreference.getUserOnBoardedStatus();
+  }
 }

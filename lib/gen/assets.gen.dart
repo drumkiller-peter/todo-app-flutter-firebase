@@ -16,6 +16,16 @@ class $AssetsImagesGen {
   $AssetsImagesSvgGen get svg => const $AssetsImagesSvgGen();
 }
 
+class $AssetsJsonGen {
+  const $AssetsJsonGen();
+
+  /// File path: assets/json/app_category_json.json
+  String get appCategoryJson => 'assets/json/app_category_json.json';
+
+  /// List of all assets
+  List<String> get values => [appCategoryJson];
+}
+
 class $AssetsImagesPngGen {
   const $AssetsImagesPngGen();
 
@@ -35,6 +45,9 @@ class $AssetsImagesPngGen {
 
 class $AssetsImagesSvgGen {
   const $AssetsImagesSvgGen();
+
+  $AssetsImagesSvgCategoriesGen get categories =>
+      const $AssetsImagesSvgCategoriesGen();
 
   /// File path: assets/images/svg/facebook.svg
   String get facebook => 'assets/images/svg/facebook.svg';
@@ -56,10 +69,59 @@ class $AssetsImagesSvgGen {
       [facebook, google, highinflutter, karyaLogo, linkedIn];
 }
 
+class $AssetsImagesSvgCategoriesGen {
+  const $AssetsImagesSvgCategoriesGen();
+
+  /// File path: assets/images/svg/categories/appointments_task.svg
+  String get appointmentsTask =>
+      'assets/images/svg/categories/appointments_task.svg';
+
+  /// File path: assets/images/svg/categories/financial_task.svg
+  String get financialTask => 'assets/images/svg/categories/financial_task.svg';
+
+  /// File path: assets/images/svg/categories/health_related_task.svg
+  String get healthRelatedTask =>
+      'assets/images/svg/categories/health_related_task.svg';
+
+  /// File path: assets/images/svg/categories/personal_task.svg
+  String get personalTask => 'assets/images/svg/categories/personal_task.svg';
+
+  /// File path: assets/images/svg/categories/relationship_task.svg
+  String get relationshipTask =>
+      'assets/images/svg/categories/relationship_task.svg';
+
+  /// File path: assets/images/svg/categories/shopping_task.svg
+  String get shoppingTask => 'assets/images/svg/categories/shopping_task.svg';
+
+  /// File path: assets/images/svg/categories/study_task.svg
+  String get studyTask => 'assets/images/svg/categories/study_task.svg';
+
+  /// File path: assets/images/svg/categories/travel_planning_task.svg
+  String get travelPlanningTask =>
+      'assets/images/svg/categories/travel_planning_task.svg';
+
+  /// File path: assets/images/svg/categories/work_task.svg
+  String get workTask => 'assets/images/svg/categories/work_task.svg';
+
+  /// List of all assets
+  List<String> get values => [
+        appointmentsTask,
+        financialTask,
+        healthRelatedTask,
+        personalTask,
+        relationshipTask,
+        shoppingTask,
+        studyTask,
+        travelPlanningTask,
+        workTask
+      ];
+}
+
 class Assets {
   Assets._();
 
   static const $AssetsImagesGen images = $AssetsImagesGen();
+  static const $AssetsJsonGen json = $AssetsJsonGen();
 }
 
 class AssetGenImage {

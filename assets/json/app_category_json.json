@@ -1,0 +1,37 @@
+[
+  {
+    "category_id": 1,
+    "category": "Personal",
+    "category_description": "paying bills, renewing driver's license, buying birthday gifts, getting a haircut, etc."
+  },
+  {
+    "category_id": 2,
+    "category": "Appointments",
+    "category_description": "doctor's visits, meetings, interviews, etc."
+  },
+  {
+    "category_id": 3,
+    "category": "Health & Fitness",
+    "category_description": "exercising, taking medication, following a healthy diet, doing yoga, etc."
+  },
+  {
+    "category_id": 4,
+    "category": "Study & Homework",
+    "category_description": "reading assignments, writing papers, studying for exams, etc."
+  },
+  {
+    "category_id": 5,
+    "category": "Work & Office",
+    "category_description": " attending meetings, completing projects, sending emails, etc."
+  },
+  {
+    "category_id": 6,
+    "category": "Relationship",
+    "category_description": "planning dates, calling friends, writing letters, etc."
+  },
+  {
+    "category_id": 7,
+    "category": "Traveling",
+    "category_description": "booking flights, reserving hotels, researching destinations, etc."
+  }
+]

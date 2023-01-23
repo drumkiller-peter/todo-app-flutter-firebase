@@ -5,7 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:todo_app_flutter/bloc/login/login_bloc.dart';
 import 'package:todo_app_flutter/configs/dependency_injection/dependency_injection.dart';
-import 'package:todo_app_flutter/configs/enum/app_emum.dart';
+import 'package:todo_app_flutter/configs/enum/app_enum.dart';
 import 'package:todo_app_flutter/configs/routes/navigator_service.dart';
 import 'package:todo_app_flutter/configs/routes/routes.dart';
 import 'package:todo_app_flutter/constants/app_color.dart';
@@ -38,6 +38,7 @@ class LoginScreen extends StatelessWidget {
             current is LoginLoadInProgress,
         listener: (context, state) {
           if (state is LoginFailure) {
+            Navigator.pop(context);
             AppSnackBar.showSnackbar(
               context,
               state.error,

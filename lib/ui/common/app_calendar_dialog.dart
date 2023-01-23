@@ -7,6 +7,8 @@ class AppCalendarDialog {
   static Future<void> openCalenderDialog({
     required BuildContext ctx,
     dynamic Function(Object?)? onSubmit,
+    DateTime? maxDate,
+    bool isRange = false,
   }) {
     return showDialog(
       context: ctx,
@@ -16,6 +18,9 @@ class AppCalendarDialog {
           child: Wrap(
             children: [
               SfDateRangePicker(
+                selectionMode: isRange
+                    ? DateRangePickerSelectionMode.range
+                    : DateRangePickerSelectionMode.single,
                 backgroundColor: AppColor.bgColor,
                 todayHighlightColor: AppColor.primary,
                 monthCellStyle: DateRangePickerMonthCellStyle(
@@ -36,11 +41,7 @@ class AppCalendarDialog {
                   ),
                 ),
                 selectionColor: AppColor.primary,
-                maxDate: DateTime.now().subtract(
-                  const Duration(
-                    days: 365 * 16,
-                  ),
-                ),
+                maxDate: maxDate,
                 onSubmit: onSubmit,
                 onCancel: () => Navigator.pop(context),
                 showActionButtons: true,

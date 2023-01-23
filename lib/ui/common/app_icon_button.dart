@@ -18,7 +18,7 @@ class AppIconButton extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 26, vertical: 8),
         decoration: BoxDecoration(
-          color: AppColor.formFillColor,
+          color: AppColor.bgColorLight,
           borderRadius: BorderRadius.circular(36),
         ),
         child: SvgPicture.asset(

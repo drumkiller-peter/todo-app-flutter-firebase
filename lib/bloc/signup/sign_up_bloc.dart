@@ -52,7 +52,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
   void onChangeDate(
       SignUpUpdateDateRequested event, Emitter<SignUpState> emit) {
     selectedDate = event.date;
-    dob.text = selectedDate.getDateAsString();
+    dob.text = selectedDate.getDefaultDateAsString();
     emit(
       SignUpCalendarUpdated(date: selectedDate),
     );

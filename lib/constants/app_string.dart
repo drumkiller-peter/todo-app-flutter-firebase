@@ -24,4 +24,22 @@ class AppString {
       "Couldn't process this operation. Please try later";
   static const String serviceNotAvailable =
       "Service is not available at the moment.";
+  static const String createTodoSuccess = "Task created successfully";
+
+  //Create TODOS
+  static const String categories = "Categories";
+  static const String selectCategories = "Select Categories";
+  static const String todoTitle = "Todo Title";
+  static const String todoTitleHint = "Add your task title";
+  static const String todoDescription = "Todo Description";
+  static const String todoDescriptionHint = "Add your task description";
+  static const String eventDateHint = "Add your event date";
+  static const String eventTimeHint = "Add your event time";
+  static const String selectStartTime = "Select your event start time";
+  static const String selectEndTime = "Select your event end time";
+  static const String eventDate = "Event date";
+  static const String eventTime = "Event time";
+  static const String createTodo = "Create task";
+  static const String createTodoOrEvent = "Create TODOs/ Events";
+  static const String savingTask = "Saving task...";
 }

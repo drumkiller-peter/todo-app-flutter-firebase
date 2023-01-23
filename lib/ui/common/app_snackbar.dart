@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:todo_app_flutter/configs/enum/app_emum.dart';
+import 'package:todo_app_flutter/configs/enum/app_enum.dart';
 import 'package:todo_app_flutter/constants/app_color.dart';
 import 'package:todo_app_flutter/constants/app_text_theme.dart';
 
