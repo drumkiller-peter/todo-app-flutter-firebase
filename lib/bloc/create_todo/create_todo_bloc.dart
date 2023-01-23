@@ -94,7 +94,6 @@ class CreateTodoBloc extends Bloc<CreateTodoEvent, CreateTodoState> {
         eventEndTime: eventEndTimeToSend,
         isCompleted: false,
       );
-      print(createTodoModel.toJson());
       final response = await _todoRepository.createTodo(
         createTodoModel,
       );
