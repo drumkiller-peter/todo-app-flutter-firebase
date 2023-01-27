@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
@@ -56,16 +54,5 @@ class TodoRepository {
         .map((event) {
       return event.docs.map((e) => TodoModel.fromJson(e.data())).toList();
     });
-    // final data = documents
-    //     .map(
-    //       (doc) => TodoModel.fromJson(doc.data() as Map<String, dynamic>),
-    //     )
-    //     .toList();
-    // log(data.toString());
-    // yield documents
-    //     .map(
-    //       (doc) => TodoModel.fromJson(doc.data() as Map<String, dynamic>),
-    //     )
-    //     .toList();
   }
 }
