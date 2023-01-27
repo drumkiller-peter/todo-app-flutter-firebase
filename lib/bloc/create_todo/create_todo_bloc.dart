@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo_app_flutter/configs/app_extension/date_time_extension.dart';
 import 'package:todo_app_flutter/constants/app_string.dart';
-import 'package:todo_app_flutter/data/models/create_todo/create_todo_model.dart';
+import 'package:todo_app_flutter/data/models/create_todo/todo_model.dart';
 import 'package:todo_app_flutter/data/models/todo_categories/todo_categories_model.dart';
 import 'package:todo_app_flutter/data/repository/authentication_repository.dart';
 import 'package:todo_app_flutter/data/repository/todo_repository.dart';
@@ -83,7 +83,7 @@ class CreateTodoBloc extends Bloc<CreateTodoEvent, CreateTodoState> {
       CreateTodoRequested event, Emitter<CreateTodoState> emit) async {
     if (createEventFormKey.currentState!.validate()) {
       emit(CreateTodoLoadInProgress());
-      CreateTodoModel createTodoModel = CreateTodoModel(
+      TodoModel createTodoModel = TodoModel(
         uId: _authenticationRepository.getUserData()!.uid,
         todoCategoriesModel: categoriesModel,
         title: title.text.trim(),
@@ -99,15 +99,15 @@ class CreateTodoBloc extends Bloc<CreateTodoEvent, CreateTodoState> {
       );
       if (!isClosed) {
         response.fold(
-          (l) => emit(
-            CreateTodoFailure(error: l),
-          ),
-          (r) => emit(
+            (l) => emit(
+                  CreateTodoFailure(error: l),
+                ), (r) {
+          emit(
             CreateTodoSuccess(
               success: AppString.createTodoSuccess,
             ),
-          ),
-        );
+          );
+        });
       }
     }
   }

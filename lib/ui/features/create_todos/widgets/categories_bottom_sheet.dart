@@ -28,7 +28,11 @@ class CategoriesBottomSheet extends StatelessWidget {
                     );
                 Navigator.pop(context);
               },
-              leading: GetCategoryIcon(categoryId: e.categoryId),
+              leading: GetCategoryIcon(
+                categoryId: e.categoryId,
+                bgColor: AppColor.bgColor,
+                iconColor: AppColor.primary,
+              ),
               title: AppText(
                 e.category,
                 style: textTheme.bodyText1,
