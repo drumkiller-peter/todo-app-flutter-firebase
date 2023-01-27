@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:todo_app_flutter/configs/app_extension/date_time_extension.dart';
 import 'package:todo_app_flutter/constants/app_color.dart';
-import 'package:todo_app_flutter/gen/assets.gen.dart';
-import 'package:todo_app_flutter/ui/common/app_icon_with_bg.dart';
+import 'package:todo_app_flutter/data/models/create_todo/todo_model.dart';
 import 'package:todo_app_flutter/ui/common/app_text.dart';
+import 'package:todo_app_flutter/ui/features/create_todos/widgets/get_category_icon_widget.dart';
 
 class EventsItem extends StatelessWidget {
-  const EventsItem({super.key});
+  const EventsItem({
+    Key? key,
+    required this.todoModel,
+  }) : super(key: key);
+
+  final TodoModel todoModel;
 
   @override
   Widget build(BuildContext context) {
@@ -22,23 +28,24 @@ class EventsItem extends StatelessWidget {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              AppIconWithBg(
-                svgPath: Assets.images.svg.google,
+              GetCategoryIcon(
+                categoryId: todoModel.todoCategoriesModel.categoryId,
               ),
               const SizedBox(
                 width: 8,
               ),
               Expanded(
+                flex: 2,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     AppText(
-                      "Appointment with Dr. Kushal Acharya, and goto Lab for Report generation. Also Consult DR. Ram for further info on my health.",
+                      todoModel.title,
                       style: textTheme.bodyText2,
                       textAlign: TextAlign.justify,
                     ),
                     AppText(
-                      "Health and Fitness",
+                      todoModel.todoCategoriesModel.category,
                       style: textTheme.bodyText2!.copyWith(
                         color: AppColor.warning,
                       ),
@@ -49,18 +56,21 @@ class EventsItem extends StatelessWidget {
               const SizedBox(
                 width: 12,
               ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  AppText(
-                    "7:00 pm",
-                    style: textTheme.caption?.copyWith(color: AppColor.blue),
-                  ),
-                  AppText(
-                    "8:00 pm",
-                    style: textTheme.caption?.copyWith(color: AppColor.blue),
-                  ),
-                ],
+              Expanded(
+                flex: 1,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    AppText(
+                      todoModel.eventStartTime.getTimeOnly(),
+                      style: textTheme.caption?.copyWith(color: AppColor.blue),
+                    ),
+                    AppText(
+                      todoModel.eventEndTime?.getTimeOnly() ?? "",
+                      style: textTheme.caption?.copyWith(color: AppColor.blue),
+                    ),
+                  ],
+                ),
               )
             ],
           )),

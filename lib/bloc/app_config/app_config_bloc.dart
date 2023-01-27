@@ -1,8 +1,8 @@
 import 'dart:convert';
 
-import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:todo_app_flutter/data/models/todo_categories/todo_categories_model.dart';
 import 'package:todo_app_flutter/data/repository/todo_repository.dart';
@@ -24,5 +24,5 @@ class AppConfigBloc extends Bloc<AppConfigEvent, AppConfigState> {
     });
   }
   final TodoRepository _todoRepository;
-   List<TodoCategoriesModel> allCategories = [];
+  List<TodoCategoriesModel> allCategories = [];
 }

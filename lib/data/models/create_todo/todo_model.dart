@@ -4,10 +4,10 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:todo_app_flutter/constants/db_keys.dart';
 import 'package:todo_app_flutter/data/models/todo_categories/todo_categories_model.dart';
 
-part 'create_todo_model.g.dart';
+part 'todo_model.g.dart';
 
 @JsonSerializable()
-class CreateTodoModel {
+class TodoModel {
   @JsonKey(name: DbKeys.uId)
   final String uId;
 
@@ -35,7 +35,7 @@ class CreateTodoModel {
   @JsonKey(name: DbKeys.isEventCompleted)
   final bool isCompleted;
 
-  const CreateTodoModel({
+  const TodoModel({
     required this.uId,
     required this.todoCategoriesModel,
     required this.title,
@@ -47,10 +47,10 @@ class CreateTodoModel {
     required this.isCompleted,
   });
 
-  factory CreateTodoModel.fromJson(Map<String, dynamic> json) =>
-      _$CreateTodoModelFromJson(json);
+  factory TodoModel.fromJson(Map<String, dynamic> json) =>
+      _$TodoModelFromJson(json);
 
-  Map<String, dynamic> toJson() => _$CreateTodoModelToJson(this);
+  Map<String, dynamic> toJson() => _$TodoModelToJson(this);
 
   Map<String, dynamic> toMap() {
     var json = toJson();

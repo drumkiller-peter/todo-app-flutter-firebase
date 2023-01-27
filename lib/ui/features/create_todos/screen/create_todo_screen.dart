@@ -4,7 +4,9 @@ import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 import 'package:todo_app_flutter/bloc/create_todo/create_todo_bloc.dart';
 import 'package:todo_app_flutter/configs/app_extension/time_of_day_extension.dart';
+import 'package:todo_app_flutter/configs/dependency_injection/dependency_injection.dart';
 import 'package:todo_app_flutter/configs/enum/app_enum.dart';
+import 'package:todo_app_flutter/configs/routes/navigator_service.dart';
 import 'package:todo_app_flutter/constants/app_color.dart';
 import 'package:todo_app_flutter/constants/app_string.dart';
 import 'package:todo_app_flutter/data/repository/authentication_repository.dart';
@@ -53,6 +55,7 @@ class _CreateTodoScreenState extends State<CreateTodoScreen> {
                 state.success,
                 MessageType.success,
               );
+              getIt.get<NavigatorService>().navigator.pop();
             }
           },
           child: Scaffold(
