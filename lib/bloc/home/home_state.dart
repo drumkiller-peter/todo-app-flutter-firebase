@@ -1,30 +1,29 @@
 part of 'home_bloc.dart';
 
-@immutable
 class HomeState extends Equatable {
-  @override
-  List<Object?> get props => [];
-}
-
-class HomeInitial extends HomeState {}
-
-class HomeLoadInProgress extends HomeState {}
-
-class HomeFailure extends HomeState {
-  final String error;
-  HomeFailure({
-    required this.error,
-  });
-  @override
-  List<Object?> get props => [error];
-}
-
-class HomeSuccess extends HomeState {
-  final List<TodoModel> todoModelList;
-  HomeSuccess({
-    required this.todoModelList,
+  final int selectedIndex;
+  final AppBottomNavItemStatus appBottomNavItemStatus;
+  const HomeState._({
+    required this.selectedIndex,
+    required this.appBottomNavItemStatus,
   });
 
   @override
-  List<Object?> get props => [todoModelList];
+  List<Object> get props => [selectedIndex, appBottomNavItemStatus];
+
+  HomeState.dashboard()
+      : this._(
+          selectedIndex: AppBottomNavItemStatus.dashboard.index,
+          appBottomNavItemStatus: AppBottomNavItemStatus.dashboard,
+        );
+  HomeState.profile()
+      : this._(
+          selectedIndex: AppBottomNavItemStatus.profile.index,
+          appBottomNavItemStatus: AppBottomNavItemStatus.profile,
+        );
+  HomeState.createTodo()
+      : this._(
+          selectedIndex: AppBottomNavItemStatus.createTodo.index,
+          appBottomNavItemStatus: AppBottomNavItemStatus.createTodo,
+        );
 }

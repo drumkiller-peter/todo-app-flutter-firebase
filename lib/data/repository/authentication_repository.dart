@@ -25,16 +25,10 @@ class AuthenticationRepository {
         email: signUpModel.email,
         password: signUpModel.password,
       );
+    
       if (response.user != null) {
-        //TODO: Deep Linking for url field, and open our app.
-        await _firebase.sendSignInLinkToEmail(
-          email: signUpModel.email,
-          actionCodeSettings: ActionCodeSettings(
-            // url: 'todo-app-flutter-firebas-d71aa.firebaseapp.com',
-            url: 'https://www.gmail.com',
-            handleCodeInApp: true,
-          ),
-        );
+        response.user?.sendEmailVerification();
+      
         final CollectionReference userCollection =
             _firestore.collection(DbKeys.users);
         await userCollection.doc(response.user!.uid).set(
@@ -99,5 +93,10 @@ class AuthenticationRepository {
 
   bool getIsUserOnBoarded() {
     return _appPreference.getUserOnBoardedStatus();
+  }
+
+  Future<void> logout() async {
+    await _firebase.signOut();
+    await _appPreference.clearAllData();
   }
 }

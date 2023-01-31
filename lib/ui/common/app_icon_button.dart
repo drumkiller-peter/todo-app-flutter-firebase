@@ -13,7 +13,7 @@ class AppIconButton extends StatelessWidget {
   final GestureTapCallback onTap;
   @override
   Widget build(BuildContext context) {
-    return InkWell(
+    return GestureDetector(
       onTap: onTap,
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 26, vertical: 8),

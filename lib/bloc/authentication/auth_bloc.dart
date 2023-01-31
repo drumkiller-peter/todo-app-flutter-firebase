@@ -1,7 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo_app_flutter/configs/enum/app_enum.dart';
-import 'package:todo_app_flutter/data/models/user_model/user_model.dart';
 import 'package:todo_app_flutter/data/repository/authentication_repository.dart';
 
 part 'auth_event.dart';
@@ -13,6 +12,9 @@ class AuthenticationBloc
       : super(const AuthenticationState.unknown()) {
     on<AuthenticateUser>(
       (event, emit) => _getAuthStatus(event, emit),
+    );
+    on<AuthenticationLogoutRequested>(
+      (event, emit) => _handleLogout(event, emit),
     );
   }
 
@@ -26,13 +28,18 @@ class AuthenticationBloc
     }
   }
 
-
-
-  void _handleAuth(AuthenticateUser event, Emitter<AuthenticationState> emit) {
+  void _handleAuth(
+      AuthenticateUser event, Emitter<AuthenticationState> emit) async {
     if (_authenticationRepository.getUserData()!.uid.isNotEmpty) {
       emit(const AuthenticationState.authenticated());
     } else {
       emit(const AuthenticationState.unAuthenticated());
     }
+  }
+
+  _handleLogout(AuthenticationLogoutRequested event,
+      Emitter<AuthenticationState> emit) async {
+    await _authenticationRepository.logout();
+    emit(const AuthenticationState.unAuthenticated());
   }
 }

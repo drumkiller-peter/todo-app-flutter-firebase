@@ -4,7 +4,7 @@ import 'package:todo_app_flutter/configs/app_extension/date_time_extension.dart'
 import 'package:todo_app_flutter/constants/app_color.dart';
 import 'package:todo_app_flutter/gen/assets.gen.dart';
 import 'package:todo_app_flutter/ui/common/app_text.dart';
-import 'package:todo_app_flutter/ui/features/home/widgets/hero_remaining_events_block.dart';
+import 'package:todo_app_flutter/ui/features/dashboard/widgets/hero_remaining_events_block.dart';
 
 class HeroBlock extends StatelessWidget {
   const HeroBlock({

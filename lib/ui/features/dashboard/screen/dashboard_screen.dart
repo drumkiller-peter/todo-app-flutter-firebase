@@ -1,27 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:todo_app_flutter/bloc/home/home_bloc.dart';
+import 'package:todo_app_flutter/bloc/dashboard/dashboard_bloc.dart';
 import 'package:todo_app_flutter/configs/dependency_injection/dependency_injection.dart';
 import 'package:todo_app_flutter/configs/enum/app_enum.dart';
 import 'package:todo_app_flutter/configs/routes/navigator_service.dart';
-import 'package:todo_app_flutter/configs/routes/routes.dart';
+import 'package:todo_app_flutter/configs/routes/app_routes.dart';
 import 'package:todo_app_flutter/constants/app_color.dart';
 import 'package:todo_app_flutter/data/repository/authentication_repository.dart';
 import 'package:todo_app_flutter/data/repository/todo_repository.dart';
 import 'package:todo_app_flutter/ui/common/app_snackbar.dart';
 import 'package:todo_app_flutter/ui/common/app_text.dart';
 import 'package:todo_app_flutter/ui/common/loading_indicator.dart';
-import 'package:todo_app_flutter/ui/features/home/widgets/events_list_item.dart';
-import 'package:todo_app_flutter/ui/features/home/widgets/hero_block.dart';
+import 'package:todo_app_flutter/ui/features/dashboard/widgets/events_list_item.dart';
+import 'package:todo_app_flutter/ui/features/dashboard/widgets/hero_block.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class DashboardScreen extends StatefulWidget {
+  const DashboardScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<DashboardScreen> createState() => _DashboardScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _DashboardScreenState extends State<DashboardScreen> {
   late final ScrollController scrollController;
   bool showTitle = false;
   @override
@@ -44,15 +44,15 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => HomeBloc(
+      create: (context) => DashboardBloc(
         context.read<TodoRepository>(),
         context.read<AuthenticationRepository>(),
-      )..add(HomeEventGetTodoRequested()),
+      )..add(DashboardEventGetTodoRequested()),
       child: Builder(builder: (context) {
-        return BlocListener<HomeBloc, HomeState>(
-          listenWhen: (previous, current) => current is HomeFailure,
+        return BlocListener<DashboardBloc, DashboardState>(
+          listenWhen: (previous, current) => current is DashboardFailure,
           listener: (context, state) {
-            if (state is HomeFailure) {
+            if (state is DashboardFailure) {
               AppSnackBar.showSnackbar(context, state.error, MessageType.error);
             }
           },
@@ -93,15 +93,15 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                 ),
-                BlocBuilder<HomeBloc, HomeState>(
+                BlocBuilder<DashboardBloc, DashboardState>(
                   buildWhen: (previous, current) =>
-                      current is HomeLoadInProgress ||
-                      current is HomeSuccess ||
-                      current is HomeFailure,
+                      current is DashboardLoadInProgress ||
+                      current is DashboardSuccess ||
+                      current is DashboardFailure,
                   builder: (context, state) {
-                    return state is HomeLoadInProgress
+                    return state is DashboardLoadInProgress
                         ? const SliverToBoxAdapter(child: LoadingIndicator())
-                        : state is HomeSuccess
+                        : state is DashboardSuccess
                             ? SliverList(
                                 delegate: SliverChildBuilderDelegate(
                                   (context, index) => EventsItem(

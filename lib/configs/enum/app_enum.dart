@@ -10,3 +10,9 @@ enum AuthenticationStatus {
   authenticated,
   unAuthenticated,
 }
+
+enum AppBottomNavItemStatus {
+  dashboard,
+  createTodo,
+  profile,
+}

@@ -6,8 +6,8 @@ import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:todo_app_flutter/bloc/login/login_bloc.dart';
 import 'package:todo_app_flutter/configs/dependency_injection/dependency_injection.dart';
 import 'package:todo_app_flutter/configs/enum/app_enum.dart';
+import 'package:todo_app_flutter/configs/routes/app_routes.dart';
 import 'package:todo_app_flutter/configs/routes/navigator_service.dart';
-import 'package:todo_app_flutter/configs/routes/routes.dart';
 import 'package:todo_app_flutter/constants/app_color.dart';
 import 'package:todo_app_flutter/constants/app_string.dart';
 import 'package:todo_app_flutter/constants/app_text_theme.dart';
@@ -52,7 +52,7 @@ class LoginScreen extends StatelessWidget {
               MessageType.success,
             );
             getIt.get<NavigatorService>().navigator.pushNamedAndRemoveUntil(
-                  AppRoutes.home,
+                  AppRoutes.dashboard,
                   (route) => false,
                 );
           }
