@@ -32,9 +32,9 @@ class _ProfileItemBlockState extends State<ProfileItemBlock> {
 
                   break;
                 case 4:
-                  context.read<AuthenticationBloc>().add(
-                        AuthenticationLogoutRequested(),
-                      );
+                  context
+                      .read<AuthenticationBloc>()
+                      .add(AuthenticationLogoutRequested());
                   break;
                 default:
                   print(AppConstants.profileItems[index].title);
