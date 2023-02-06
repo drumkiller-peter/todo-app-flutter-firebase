@@ -67,20 +67,14 @@ class AppTextTheme {
     color: AppColor.black.withOpacity(0.54),
   );
 
-  static TextStyle caption = TextStyle(
-    fontSize: 14,
+  static TextStyle caption = const TextStyle(
+    fontSize: 12,
     fontWeight: FontWeight.w400,
-    color: AppColor.black.withOpacity(0.54),
+    color: AppColor.greyText,
   );
 
   static TextStyle caption2 = const TextStyle(
     fontSize: 11,
-    fontWeight: FontWeight.w400,
-    color: AppColor.white,
-  );
-
-  static TextStyle captionSmall = const TextStyle(
-    fontSize: 12,
     fontWeight: FontWeight.w400,
     color: AppColor.white,
   );

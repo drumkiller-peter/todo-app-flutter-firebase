@@ -21,7 +21,8 @@ class AuthenticationBloc
   final AuthenticationRepository _authenticationRepository;
   _getAuthStatus(
       AuthenticateUser event, Emitter<AuthenticationState> emit) async {
-    if (_authenticationRepository.getIsUserOnBoarded()) {
+    //TODO: handle OnBoarding here
+    if (!_authenticationRepository.getIsUserOnBoarded()) {
       _handleAuth(event, emit);
     } else {
       emit(const AuthenticationState.onBoarding());
@@ -30,7 +31,7 @@ class AuthenticationBloc
 
   void _handleAuth(
       AuthenticateUser event, Emitter<AuthenticationState> emit) async {
-    if (_authenticationRepository.getUserData()!.uid.isNotEmpty) {
+    if (_authenticationRepository.getUserData().uid.isNotEmpty) {
       emit(const AuthenticationState.authenticated());
     } else {
       emit(const AuthenticationState.unAuthenticated());

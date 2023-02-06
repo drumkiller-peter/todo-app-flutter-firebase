@@ -9,6 +9,7 @@ class DbKeys {
   static const String fullName = 'full_name';
   static const String dob = 'date_of_birth';
   static const String uId = 'uid';
+  static const String profilePicture = 'profile_picture';
 
   //Categories
   static const String category = 'category';

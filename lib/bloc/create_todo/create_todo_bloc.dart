@@ -84,7 +84,7 @@ class CreateTodoBloc extends Bloc<CreateTodoEvent, CreateTodoState> {
     if (createEventFormKey.currentState!.validate()) {
       emit(CreateTodoLoadInProgress());
       TodoModel createTodoModel = TodoModel(
-        uId: _authenticationRepository.getUserData()!.uid,
+        uId: _authenticationRepository.getUserData().uid,
         todoCategoriesModel: categoriesModel,
         title: title.text.trim(),
         description: description.text.trim(),

@@ -24,6 +24,7 @@ class AppString {
       "Couldn't process this operation. Please try later";
   static const String serviceNotAvailable =
       "Service is not available at the moment.";
+  static const String signUpCancelled = "Sign up cancelled";
   static const String createTodoSuccess = "Task created successfully";
 
   //Create TODOS
@@ -42,4 +43,14 @@ class AppString {
   static const String createTodo = "Create task";
   static const String createTodoOrEvent = "Create TODOs/ Events";
   static const String savingTask = "Saving task...";
+
+  //Profile Screen
+  static const String changePassword = "Change password";
+  static const String signOut = "Sign out";
+  static const String theme = "Theme";
+  static const String taskCompletionRate = "Completion rate";
+  static const String syncWithCalendar = "Sync with calendar";
+  static const String taskCompletionHistory = "Completion history";
+  static const String taskCollaborationWithOtherUsers =
+      "Collaboration with other users";
 }

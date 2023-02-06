@@ -52,7 +52,7 @@ class LoginScreen extends StatelessWidget {
               MessageType.success,
             );
             getIt.get<NavigatorService>().navigator.pushNamedAndRemoveUntil(
-                  AppRoutes.dashboard,
+                  AppRoutes.home,
                   (route) => false,
                 );
           }
@@ -139,7 +139,7 @@ class LoginScreen extends StatelessWidget {
                           alignment: Alignment.centerRight,
                           child: AppText(
                             AppString.forgotPassword,
-                            style: AppTextTheme.captionSmall.copyWith(
+                            style: AppTextTheme.caption.copyWith(
                               color: AppColor.primary,
                               fontWeight: FontWeight.w600,
                             ),
