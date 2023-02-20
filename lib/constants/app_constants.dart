@@ -8,6 +8,7 @@ class AppConstants {
   // App DateTime Formats
   static const String defaultDateFormat = 'dd/MM/yyyy';
   static const String getDayMonthYearWithTime = 'dd MMM, yyyy hh:mm a';
+  static const String getFullDateWithTime = 'dd/MM/yyyy hh:mm a';
   static const String defaultTimeFormat = 'hh:mm a';
 
   // Dummy Data
