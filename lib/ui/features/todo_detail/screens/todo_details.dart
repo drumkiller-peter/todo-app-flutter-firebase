@@ -37,6 +37,7 @@ class TodoDetailsScreen extends StatelessWidget {
               AppLoadingDialog.openLoadingDialog(context);
             } else if (state is TodoDetailsSuccess) {
               Navigator.pop(context);
+              Navigator.pop(context);
               AppSnackBar.showSnackbar(
                   context, state.success, MessageType.success);
             } else if (state is TodoDetailsFailure) {
@@ -134,15 +135,18 @@ class TodoDetailsScreen extends StatelessWidget {
                     AppPrimaryButton(
                       isEnabled: true,
                       onPressed: () async {
-                        final differ = todoModel.eventEndDate
-                            .difference(todoModel.eventStartDate);
-                        var diffInSeconds = differ.inMilliseconds;
+                        final eventPeriodInMilliSeconds = todoModel.eventEndDate
+                            .difference(todoModel.eventStartDate)
+                            .inMilliseconds;
 
-                        var timeTaken =
-                            DateTime.now().difference(todoModel.eventStartDate);
-                        var timeTakenInSeconds = timeTaken.inMilliseconds;
-                        double rate =
-                            (diffInSeconds / timeTakenInSeconds) * 100;
+                        final timeTakenInMilliSeconds = DateTime.now()
+                            .difference(todoModel.eventStartDate)
+                            .inMilliseconds;
+
+                        double rate = (eventPeriodInMilliSeconds /
+                                timeTakenInMilliSeconds) *
+                            100;
+
                         context.read<TodoDetailsBloc>().add(
                               TodoMarkAsCompleteRequested(
                                 completionModel: CompletionModel(
