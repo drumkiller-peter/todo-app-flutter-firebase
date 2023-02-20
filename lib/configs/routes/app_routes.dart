@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todo_app_flutter/data/models/create_todo/todo_model.dart';
 import 'package:todo_app_flutter/ui/features/authentication/login/login_screen.dart';
 import 'package:todo_app_flutter/ui/features/authentication/sign_up/sign_up_screen.dart';
 import 'package:todo_app_flutter/ui/features/create_todos/screen/create_todo_screen.dart';
@@ -6,6 +7,7 @@ import 'package:todo_app_flutter/ui/features/dashboard/screen/dashboard_screen.d
 import 'package:todo_app_flutter/ui/features/home/screens/home_screen.dart';
 import 'package:todo_app_flutter/ui/features/profile/screen/profile_screen.dart';
 import 'package:todo_app_flutter/ui/features/splash_screen/splash_screen.dart';
+import 'package:todo_app_flutter/ui/features/todo_detail/screens/todo_details.dart';
 
 class AppRoutes {
   AppRoutes._();
@@ -17,6 +19,7 @@ class AppRoutes {
   static const String createTodo = 'createTodo';
   static const String profile = 'profile';
   static const String splashScreen = 'splashScreen';
+  static const String todoDetails = 'todoDetails';
 
   static Route<dynamic> onGenerateRoute(RouteSettings routeSettings) {
     switch (routeSettings.name) {
@@ -34,6 +37,10 @@ class AppRoutes {
         return _getMaterialRoute(const ProfileScreen());
       case splashScreen:
         return _getMaterialRoute(const SplashScreen());
+      case todoDetails:
+        return _getMaterialRoute( TodoDetailsScreen(
+          todoModel: routeSettings.arguments as TodoModel,
+        ));
       default:
         return _getMaterialRoute(
           ErrorWidget(

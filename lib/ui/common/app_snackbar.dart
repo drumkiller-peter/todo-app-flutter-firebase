@@ -50,7 +50,7 @@ class AppSnackBar {
       case MessageType.success:
         return AppColor.successBg;
       case MessageType.error:
-        return AppColor.errorBg;
+        return Colors.redAccent;
       case MessageType.warning:
         return AppColor.warning;
       default:
@@ -63,7 +63,7 @@ class AppSnackBar {
       case MessageType.success:
         return AppColor.success;
       case MessageType.error:
-        return AppColor.error;
+        return AppColor.white;
       case MessageType.warning:
         return AppColor.black;
       default:

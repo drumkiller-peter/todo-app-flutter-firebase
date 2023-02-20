@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo_app_flutter/bloc/dashboard/dashboard_bloc.dart';
+import 'package:todo_app_flutter/configs/dependency_injection/dependency_injection.dart';
 import 'package:todo_app_flutter/configs/enum/app_enum.dart';
+import 'package:todo_app_flutter/configs/routes/app_routes.dart';
+import 'package:todo_app_flutter/configs/routes/navigator_service.dart';
 import 'package:todo_app_flutter/constants/app_color.dart';
 import 'package:todo_app_flutter/data/repository/authentication_repository.dart';
 import 'package:todo_app_flutter/data/repository/todo_repository.dart';
@@ -18,7 +21,8 @@ class DashboardScreen extends StatefulWidget {
   State<DashboardScreen> createState() => _DashboardScreenState();
 }
 
-class _DashboardScreenState extends State<DashboardScreen> {
+class _DashboardScreenState extends State<DashboardScreen>
+    with AutomaticKeepAliveClientMixin {
   late final ScrollController scrollController;
   bool showTitle = false;
   @override
@@ -88,8 +92,19 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       : state is DashboardSuccess
                           ? SliverList(
                               delegate: SliverChildBuilderDelegate(
-                                (context, index) => EventsItem(
-                                  todoModel: state.todoModelList[index],
+                                (context, index) => InkWell(
+                                  onTap: () {
+                                    getIt
+                                        .get<NavigatorService>()
+                                        .navigator
+                                        .pushNamed(
+                                          AppRoutes.todoDetails,
+                                          arguments: state.todoModelList[index],
+                                        );
+                                  },
+                                  child: EventsItem(
+                                    todoModel: state.todoModelList[index],
+                                  ),
                                 ),
                                 childCount: state.todoModelList.length,
                               ),
@@ -103,4 +118,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
       }),
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

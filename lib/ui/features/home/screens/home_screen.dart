@@ -51,13 +51,29 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ],
               ),
-              body: IndexedStack(
-                index: state.selectedIndex,
-                children: const [
-                  DashboardScreen(),
-                  CreateTodoScreen(),
-                  ProfileScreen(),
-                ],
+              body:
+                  // state.selectedIndex == AppBottomNavItemStatus.dashboard.index
+                  //     ? const DashboardScreen()
+                  //     : state.selectedIndex ==
+                  //             AppBottomNavItemStatus.createTodo.index
+                  //         ? const CreateTodoScreen()
+                  //         : const ProfileScreen(),
+                  PageView.builder(
+                controller: context.read<HomeBloc>().pageController,
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: 3,
+                itemBuilder: (context, index) {
+                  if (index == AppBottomNavItemStatus.dashboard.index) {
+                    return const DashboardScreen();
+                  }
+                  if (index == AppBottomNavItemStatus.createTodo.index) {
+                    return const CreateTodoScreen();
+                  }
+                  if (index == AppBottomNavItemStatus.profile.index) {
+                    return const ProfileScreen();
+                  }
+                  return const DashboardScreen();
+                },
               ),
             );
           },

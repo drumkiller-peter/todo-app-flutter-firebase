@@ -16,11 +16,20 @@ class App extends StatelessWidget {
     return BlocListener<AuthenticationBloc, AuthenticationState>(
       listener: (ctx, state) {
         if (state.status == AuthenticationStatus.onBoarding) {
-          getIt.get<NavigatorService>().navigator.pushNamed(AppRoutes.login);
+          getIt.get<NavigatorService>().navigator.pushNamedAndRemoveUntil(
+                AppRoutes.login,
+                (route) => false,
+              );
         } else if (state.status == AuthenticationStatus.authenticated) {
-          getIt.get<NavigatorService>().navigator.pushNamed(AppRoutes.home);
+          getIt.get<NavigatorService>().navigator.pushNamedAndRemoveUntil(
+                AppRoutes.home,
+                (route) => false,
+              );
         } else if (state.status == AuthenticationStatus.unAuthenticated) {
-          getIt.get<NavigatorService>().navigator.pushNamed(AppRoutes.login);
+          getIt.get<NavigatorService>().navigator.pushNamedAndRemoveUntil(
+                AppRoutes.login,
+                (route) => false,
+              );
         }
       },
       child: MaterialApp(

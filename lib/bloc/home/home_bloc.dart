@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:todo_app_flutter/configs/enum/app_enum.dart';
 
 part 'home_event.dart';
@@ -10,8 +10,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   HomeBloc() : super(HomeState.dashboard()) {
     on<HomeBottomNavIconChangeRequested>(
       (event, emit) {
-        print(event.tappedBottomNavItemIndex);
-
+        _pageController.jumpToPage(event.tappedBottomNavItemIndex);
         if (event.tappedBottomNavItemIndex ==
             AppBottomNavItemStatus.dashboard.index) {
           emit(HomeState.dashboard());
@@ -27,4 +26,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       },
     );
   }
+
+  final PageController _pageController = PageController();
+  PageController get pageController => _pageController;
 }

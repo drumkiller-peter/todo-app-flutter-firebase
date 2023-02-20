@@ -181,11 +181,9 @@ class LoginScreen extends StatelessWidget {
                           children: [
                             AppIconButton(
                               onTap: () {
-                                AppSnackBar.showSnackbar(
-                                  context,
-                                  AppString.serviceNotAvailable,
-                                  MessageType.warning,
-                                );
+                                context
+                                    .read<LoginBloc>()
+                                    .add(LoginWithGoogleRequested());
                               },
                               svgPath: Assets.images.svg.google,
                             ),

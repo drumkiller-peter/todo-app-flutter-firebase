@@ -47,4 +47,8 @@ class AppConstants {
       title: AppString.signOut,
     ),
   ];
+
+  //Google Client id
+  static const String googleClientId =
+      "111636486846-lcn4dg2mpm0gl7glnk6vdkqmr3ncotk2.apps.googleusercontent.com";
 }

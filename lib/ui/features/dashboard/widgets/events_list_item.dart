@@ -78,11 +78,11 @@ class EventsItem extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     AppText(
-                      todoModel.eventStartTime.getTimeOnly(),
+                      todoModel.eventStartDate.getTimeOnly(),
                       style: textTheme.caption?.copyWith(color: AppColor.blue),
                     ),
                     AppText(
-                      todoModel.eventEndTime?.getTimeOnly() ?? "",
+                      todoModel.eventEndDate.getTimeOnly(),
                       style: textTheme.caption?.copyWith(color: AppColor.blue),
                     ),
                   ],

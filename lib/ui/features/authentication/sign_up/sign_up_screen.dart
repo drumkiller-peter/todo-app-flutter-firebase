@@ -40,6 +40,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         listenWhen: (previous, current) =>
             current is SignUpFailure ||
             current is SignUpSuccess ||
+            current is SignUpSocialSuccess ||
             current is SignUpLoadInProgress,
         listener: (context, state) {
           if (state is SignUpFailure) {
@@ -66,7 +67,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
             Navigator.pop(context);
             AppSnackBar.showSnackbar(
               context,
-              AppString.signUpSuccess,      
+              AppString.signUpSuccess,
               MessageType.success,
             );
             getIt.get<NavigatorService>().navigator.pushNamedAndRemoveUntil(

@@ -1,8 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:extension_google_sign_in_as_googleapis_auth/extension_google_sign_in_as_googleapis_auth.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:googleapis/calendar/v3.dart';
+import 'package:googleapis_auth/googleapis_auth.dart';
 import 'package:todo_app_flutter/configs/dependency_injection/dependency_injection.dart';
 import 'package:todo_app_flutter/constants/app_string.dart';
 import 'package:todo_app_flutter/constants/db_keys.dart';
@@ -15,7 +18,11 @@ class AuthenticationRepository {
   final Dio _dio = getIt.get<Dio>();
   final FirebaseAuth _firebase = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-  final GoogleSignIn _googleSignIn = GoogleSignIn();
+  final GoogleSignIn _googleSignIn = GoogleSignIn(
+    scopes: [
+      CalendarApi.calendarScope,
+    ],
+  );
 
   final AppPreference _appPreference = getIt.get<AppPreference>();
 
@@ -103,6 +110,8 @@ class AuthenticationRepository {
       //Making Sure that we SignOut the user first
       await _googleSignIn.signOut();
       final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
+      final response = await _googleSignIn.authenticatedClient();
+      print("#################  $response");
 
       if (googleUser != null) {
         // Obtain the auth details from the request
@@ -167,5 +176,10 @@ class AuthenticationRepository {
     } on FirebaseException {
       throw FirebaseException(plugin: 'Google sign in');
     }
+  }
+
+  Future<AuthClient?> authenticateClient() async {
+    await _googleSignIn.signIn();
+    return await _googleSignIn.authenticatedClient();
   }
 }

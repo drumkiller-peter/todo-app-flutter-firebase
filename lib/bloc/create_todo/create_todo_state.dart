@@ -40,25 +40,35 @@ class CreateTodoCategoryChanged extends CreateTodoState {
 }
 
 class CreateTodoDateChanged extends CreateTodoState {
-  final DateTime selectedStartDate;
+  final DateTime? selectedStartDate;
   final DateTime? selectedEndDate;
 
   CreateTodoDateChanged({
-    required this.selectedStartDate,
-     this.selectedEndDate,
+    this.selectedStartDate,
+    this.selectedEndDate,
   });
   @override
   List<Object?> get props => [selectedStartDate, selectedEndDate];
 }
 
 class CreateTodoTimeChanged extends CreateTodoState {
-  final DateTime selectedStartTime;
+  final DateTime? selectedStartTime;
   final DateTime? selectedEndTime;
 
   CreateTodoTimeChanged({
-    required this.selectedStartTime,
-     this.selectedEndTime,
+    this.selectedStartTime,
+    this.selectedEndTime,
   });
   @override
   List<Object?> get props => [selectedStartTime, selectedEndTime];
+}
+
+class CreateTodoSyncCalendarChanged extends CreateTodoState {
+  final bool isEnabled;
+  CreateTodoSyncCalendarChanged({
+    required this.isEnabled,
+  });
+
+  @override
+  List<Object?> get props => [isEnabled];
 }
