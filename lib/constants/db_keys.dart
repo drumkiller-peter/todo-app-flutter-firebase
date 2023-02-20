@@ -4,6 +4,7 @@ class DbKeys {
   //Tables Name
   static const String users = 'users';
   static const String event = 'event';
+  static const String completedEvents = 'completed_events';
 
 //fields names
   static const String fullName = 'full_name';
@@ -29,4 +30,8 @@ class DbKeys {
   static const String createdAt = 'created_at';
   static const String isSyncedWithGoogleCalendar =
       'is_synced_with_google_calendar';
+
+  //Completion Model
+  static const String completedAt = 'completed_at';
+  static const String rateOfCompletion = 'rate_of_completion';
 }

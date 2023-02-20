@@ -26,6 +26,9 @@ class AppString {
       "Service is not available at the moment.";
   static const String signUpCancelled = "Sign up cancelled";
   static const String createTodoSuccess = "Task created successfully";
+  static const String deleteTodoSuccess = "Task deleted successfully";
+  static const String markedAsCompletedSuccess =
+      "The task has been completed successfully";
 
   //Create TODOS
   static const String categories = "Categories";

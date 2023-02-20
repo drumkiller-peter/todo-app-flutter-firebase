@@ -10,8 +10,27 @@ extension DateTimeExtension on DateTime {
     return DateFormat(AppConstants.getDayMonthYearWithTime).format(this);
   }
 
+  String getFullDateWithTime() {
+    return DateFormat(AppConstants.getFullDateWithTime).format(this);
+  }
+
   /// returns in 'hh:mm' format
   String getTimeOnly() {
     return DateFormat(AppConstants.defaultTimeFormat).format(this);
+  }
+
+  String getEventRemainingTime() {
+    String message = "";
+    final timeDifference = difference(DateTime.now());
+    if (timeDifference.inDays > 0) {
+      message = '${timeDifference.inDays} day remaining';
+    } else if (timeDifference.inMinutes > 0) {
+      message = '${timeDifference.inMinutes} min remaining';
+    } else if (timeDifference.inSeconds > 0) {
+      message = '${timeDifference.inSeconds} sec remaining';
+    } else {
+      message = "Time's up";
+    }
+    return message;
   }
 }

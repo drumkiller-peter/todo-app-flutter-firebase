@@ -11,7 +11,6 @@ class AppColor {
 
   //Support Colors
   static const Color cyan = Colors.cyanAccent;
-  static const Color blue = Color(0xff55d23c);
 
   // UI Component Color
   static const Color disabledButtonColor = Color(0xffDBDBDB);

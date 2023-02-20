@@ -79,11 +79,13 @@ class EventsItem extends StatelessWidget {
                   children: [
                     AppText(
                       todoModel.eventStartDate.getTimeOnly(),
-                      style: textTheme.caption?.copyWith(color: AppColor.blue),
+                      style:
+                          textTheme.caption?.copyWith(color: AppColor.warning),
                     ),
                     AppText(
                       todoModel.eventEndDate.getTimeOnly(),
-                      style: textTheme.caption?.copyWith(color: AppColor.blue),
+                      style:
+                          textTheme.caption?.copyWith(color: AppColor.warning),
                     ),
                   ],
                 ),
