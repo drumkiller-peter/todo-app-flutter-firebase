@@ -31,7 +31,7 @@ class TodoRepository {
       CollectionReference eventCollection =
           _firebaseFirestore.collection(DbKeys.event);
 
-      await eventCollection.doc().set(
+      await eventCollection.doc(createTodoModel.uuid).set(
             createTodoModel.toMap(),
             SetOptions(merge: false),
           );
@@ -41,8 +41,6 @@ class TodoRepository {
       return left(
         e.message.toString(),
       );
-    } on Exception catch (e) {
-      return left(e.toString());
     }
   }
 

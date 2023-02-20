@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:todo_app_flutter/configs/app_extension/date_time_extension.dart';
 import 'package:todo_app_flutter/constants/app_color.dart';
 import 'package:todo_app_flutter/gen/assets.gen.dart';
 import 'package:todo_app_flutter/ui/common/app_text.dart';
-import 'package:todo_app_flutter/ui/features/home/widgets/hero_remaining_events_block.dart';
+import 'package:todo_app_flutter/ui/features/dashboard/widgets/hero_remaining_events_block.dart';
 
 class HeroBlock extends StatelessWidget {
   const HeroBlock({
@@ -49,10 +48,21 @@ class HeroBlock extends StatelessWidget {
                     width: 50,
                   ),
                   const Spacer(),
-                  AppText(
-                    DateTime.now().getDayMonthYearWithTime(),
-                    style: textTheme.caption?.copyWith(color: AppColor.white),
-                  ),
+                  Stack(
+                    children: [
+                      SvgPicture.asset(
+                        Assets.images.svg.notification,
+                        color: AppColor.white,
+                      ),
+                      const Positioned(
+                        left: 4,
+                        child: CircleAvatar(
+                          radius: 4,
+                          backgroundColor: AppColor.error,
+                        ),
+                      ),
+                    ],
+                  )
                 ],
               ),
             ),

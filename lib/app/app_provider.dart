@@ -4,6 +4,7 @@ import 'package:todo_app_flutter/app/app.dart';
 import 'package:todo_app_flutter/bloc/app_config/app_config_bloc.dart';
 import 'package:todo_app_flutter/bloc/authentication/auth_bloc.dart';
 import 'package:todo_app_flutter/data/repository/authentication_repository.dart';
+import 'package:todo_app_flutter/data/repository/profile_repository.dart';
 import 'package:todo_app_flutter/data/repository/todo_repository.dart';
 
 class AppProvider extends StatelessWidget {
@@ -18,6 +19,9 @@ class AppProvider extends StatelessWidget {
         ),
         RepositoryProvider(
           create: (BuildContext context) => TodoRepository(),
+        ),
+        RepositoryProvider(
+          create: (BuildContext context) => ProfileRepository(),
         ),
       ],
       child: MultiBlocProvider(

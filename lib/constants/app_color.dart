@@ -7,6 +7,7 @@ class AppColor {
   static const Color white = Color(0xffffffff);
   static const Color black = Color(0xff1B1B1D);
   static const Color bgColor = Color(0xff202442);
+  static const Color bgColorDarker = Color(0xFF16192E);
 
   //Support Colors
   static const Color cyan = Colors.cyanAccent;

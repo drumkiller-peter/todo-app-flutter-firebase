@@ -59,4 +59,8 @@ class AppPreference {
     final List<dynamic> temp = jsonDecode(allCategories);
     return temp.map((e) => TodoCategoriesModel.fromJson(e)).toList();
   }
+
+  Future<void> clearAllData() async {
+    await sharedPreferences.clear();
+  }
 }

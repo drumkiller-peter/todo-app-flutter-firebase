@@ -16,3 +16,5 @@ class SignUpUpdateDateRequested extends SignUpEvent {
   @override
   List<Object?> get props => [date];
 }
+
+ class SignUpWithGoogleRequested extends SignUpEvent{}

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 import 'package:todo_app_flutter/constants/app_color.dart';
+import 'package:todo_app_flutter/constants/app_text_theme.dart';
 
 class AppCalendarDialog {
   AppCalendarDialog._();
@@ -50,6 +52,57 @@ class AppCalendarDialog {
           ),
         );
       },
+    );
+  }
+
+  static Future<DateTime?> openDatePicker(
+      {required BuildContext ctx, bool isDatePicker = true}) async {
+    return DatePicker.showDateTimePicker(
+      ctx,
+      showTitleActions: true,
+      locale: LocaleType.en,
+      minTime: DateTime.now().subtract(
+        const Duration(days: 1),
+      ),
+      maxTime: DateTime.now().add(
+        const Duration(days: 1),
+      ),
+      theme: DatePickerTheme(
+        backgroundColor: AppColor.bgColor,
+        itemStyle: AppTextTheme.bodyText2,
+        cancelStyle: AppTextTheme.bodyText1,
+        doneStyle: AppTextTheme.bodyText1.copyWith(
+          color: AppColor.cyan,
+        ),
+      ),
+    );
+  }
+
+  static Future<DateTime?> openDatePickerForBirthdays(
+      {required BuildContext ctx, bool isDatePicker = true}) async {
+    return DatePicker.showPicker(
+      ctx,
+      showTitleActions: true,
+      locale: LocaleType.en,
+      pickerModel: isDatePicker
+          ? DatePickerModel(
+              currentTime: DateTime.now(),
+              maxTime: DateTime.now().add(
+                const Duration(days: 365),
+              ),
+            )
+          : Time12hPickerModel(
+              currentTime: DateTime.now(),
+              locale: LocaleType.en,
+            ),
+      theme: DatePickerTheme(
+        backgroundColor: AppColor.bgColor,
+        itemStyle: AppTextTheme.bodyText2,
+        cancelStyle: AppTextTheme.bodyText1,
+        doneStyle: AppTextTheme.bodyText1.copyWith(
+          color: AppColor.cyan,
+        ),
+      ),
     );
   }
 }

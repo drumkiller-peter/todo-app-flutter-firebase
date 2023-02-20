@@ -46,8 +46,14 @@ class $AssetsImagesPngGen {
 class $AssetsImagesSvgGen {
   const $AssetsImagesSvgGen();
 
+  /// File path: assets/images/svg/calendar.svg
+  String get calendar => 'assets/images/svg/calendar.svg';
+
   $AssetsImagesSvgCategoriesGen get categories =>
       const $AssetsImagesSvgCategoriesGen();
+
+  /// File path: assets/images/svg/collab.svg
+  String get collab => 'assets/images/svg/collab.svg';
 
   /// File path: assets/images/svg/facebook.svg
   String get facebook => 'assets/images/svg/facebook.svg';
@@ -58,15 +64,38 @@ class $AssetsImagesSvgGen {
   /// File path: assets/images/svg/highinflutter.svg
   String get highinflutter => 'assets/images/svg/highinflutter.svg';
 
+  /// File path: assets/images/svg/history.svg
+  String get history => 'assets/images/svg/history.svg';
+
   /// File path: assets/images/svg/karya_logo.svg
   String get karyaLogo => 'assets/images/svg/karya_logo.svg';
 
   /// File path: assets/images/svg/linkedIn.svg
   String get linkedIn => 'assets/images/svg/linkedIn.svg';
 
+  /// File path: assets/images/svg/logout.svg
+  String get logout => 'assets/images/svg/logout.svg';
+
+  /// File path: assets/images/svg/notification.svg
+  String get notification => 'assets/images/svg/notification.svg';
+
+  /// File path: assets/images/svg/password.svg
+  String get password => 'assets/images/svg/password.svg';
+
   /// List of all assets
-  List<String> get values =>
-      [facebook, google, highinflutter, karyaLogo, linkedIn];
+  List<String> get values => [
+        calendar,
+        collab,
+        facebook,
+        google,
+        highinflutter,
+        history,
+        karyaLogo,
+        linkedIn,
+        logout,
+        notification,
+        password
+      ];
 }
 
 class $AssetsImagesSvgCategoriesGen {

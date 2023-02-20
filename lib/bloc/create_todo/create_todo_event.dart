@@ -18,23 +18,21 @@ class CreateTodoCategoryChangeRequested extends CreateTodoEvent {
 }
 
 class CreateTodoDateUpdateRequested extends CreateTodoEvent {
-  final DateTime selectedEventStartDate;
+  final DateTime? selectedEventStartDate;
   final DateTime? selectedEventEndDate;
   CreateTodoDateUpdateRequested({
-    required this.selectedEventStartDate,
+    this.selectedEventStartDate,
     this.selectedEventEndDate,
   });
   @override
   List<Object?> get props => [selectedEventStartDate, selectedEventEndDate];
 }
 
-class CreateTodoTimeUpdateRequested extends CreateTodoEvent {
-  final DateTime selectedEventStartTime;
-  final DateTime? selectedEventEndTime;
-  CreateTodoTimeUpdateRequested({
-    required this.selectedEventStartTime,
-    this.selectedEventEndTime,
-  });
+class CreateTodoSyncWithCalendarRequested extends CreateTodoEvent {
+  final bool isEnabled;
+
+  CreateTodoSyncWithCalendarRequested(this.isEnabled);
+
   @override
-  List<Object?> get props => [selectedEventStartTime, selectedEventEndTime];
+  List<Object?> get props => [isEnabled];
 }

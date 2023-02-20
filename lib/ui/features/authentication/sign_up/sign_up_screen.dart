@@ -1,4 +1,3 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -6,8 +5,8 @@ import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:todo_app_flutter/bloc/signup/sign_up_bloc.dart';
 import 'package:todo_app_flutter/configs/dependency_injection/dependency_injection.dart';
 import 'package:todo_app_flutter/configs/enum/app_enum.dart';
+import 'package:todo_app_flutter/configs/routes/app_routes.dart';
 import 'package:todo_app_flutter/configs/routes/navigator_service.dart';
-import 'package:todo_app_flutter/configs/routes/routes.dart';
 import 'package:todo_app_flutter/constants/app_color.dart';
 import 'package:todo_app_flutter/constants/app_string.dart';
 import 'package:todo_app_flutter/constants/app_text_theme.dart';
@@ -19,6 +18,7 @@ import 'package:todo_app_flutter/ui/common/app_loading_dialog.dart';
 import 'package:todo_app_flutter/ui/common/app_snackbar.dart';
 import 'package:todo_app_flutter/ui/common/app_text.dart';
 import 'package:todo_app_flutter/ui/common/app_text_field.dart';
+import 'package:todo_app_flutter/ui/features/authentication/sign_up/widgets/social_blocks.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -40,6 +40,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         listenWhen: (previous, current) =>
             current is SignUpFailure ||
             current is SignUpSuccess ||
+            current is SignUpSocialSuccess ||
             current is SignUpLoadInProgress,
         listener: (context, state) {
           if (state is SignUpFailure) {
@@ -59,6 +60,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
             );
             getIt.get<NavigatorService>().navigator.pushNamedAndRemoveUntil(
                   AppRoutes.login,
+                  (route) => false,
+                );
+          }
+          if (state is SignUpSocialSuccess) {
+            Navigator.pop(context);
+            AppSnackBar.showSnackbar(
+              context,
+              AppString.signUpSuccess,
+              MessageType.success,
+            );
+            getIt.get<NavigatorService>().navigator.pushNamedAndRemoveUntil(
+                  AppRoutes.home,
                   (route) => false,
                 );
           }
@@ -212,35 +225,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       const SizedBox(
                         height: 32,
                       ),
-                      Center(
-                        child: RichText(
-                          text: TextSpan(
-                            text: "Already have an account? ",
-                            style: Theme.of(ctx)
-                                .textTheme
-                                .bodyText1!
-                                .copyWith(letterSpacing: 0.5),
-                            children: <TextSpan>[
-                              TextSpan(
-                                text: AppString.login,
-                                style:
-                                    Theme.of(ctx).textTheme.bodyText1!.copyWith(
-                                          letterSpacing: 0.5,
-                                          color: Colors.cyanAccent,
-                                        ),
-                                recognizer: TapGestureRecognizer()
-                                  ..onTap = () {
-                                    Navigator.pushNamedAndRemoveUntil(
-                                      ctx,
-                                      AppRoutes.login,
-                                      (_) => false,
-                                    );
-                                  },
-                              ),
-                            ],
-                          ),
-                        ),
-                      )
+                      const SocialBlocks(),
                     ],
                   );
                 }),

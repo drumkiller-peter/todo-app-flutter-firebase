@@ -13,6 +13,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
   SignUpBloc(this._authenticationRepository) : super(SignUpInitial()) {
     on<SignUpRequested>(_handleSignUp);
     on<SignUpUpdateDateRequested>(onChangeDate);
+    on<SignUpWithGoogleRequested>(_onGoogleSignIn);
   }
 
   final AuthenticationRepository _authenticationRepository;
@@ -42,7 +43,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
         ),
         (r) => emit(
           SignUpSuccess(
-            "${AppString.welcome} ${_authenticationRepository.getUserData()!.fullName.toString()}",
+            "${AppString.welcome} ${_authenticationRepository.getUserData().fullName}",
           ),
         ),
       );
@@ -56,5 +57,17 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
     emit(
       SignUpCalendarUpdated(date: selectedDate),
     );
+  }
+
+  Future<void> _onGoogleSignIn(
+      SignUpWithGoogleRequested event, Emitter<SignUpState> emit) async {
+    emit(SignUpLoadInProgress());
+    final response = await _authenticationRepository.signUpWithGoogle();
+    if (isClosed) return;
+    response.fold((l) => emit(SignUpFailure(l)), (r) {
+      emit(SignUpSocialSuccess(
+        "${AppString.welcome} ${_authenticationRepository.getUserData().fullName}",
+      ));
+    });
   }
 }

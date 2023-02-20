@@ -36,3 +36,11 @@ class SignUpSuccess extends SignUpState {
   @override
   List<Object?> get props => [success];
 }
+class SignUpSocialSuccess extends SignUpState {
+  final String success;
+
+  SignUpSocialSuccess(this.success);
+
+  @override
+  List<Object?> get props => [success];
+}

@@ -11,6 +11,7 @@ part 'login_state.dart';
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
   LoginBloc(this._authenticationRepository) : super(LoginInitial()) {
     on<LoginRequested>(_handleLogin);
+    on<LoginWithGoogleRequested>(_handleGoogleSignIn);
   }
 
   final AuthenticationRepository _authenticationRepository;
@@ -39,5 +40,17 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         );
       });
     }
+  }
+
+  Future<void> _handleGoogleSignIn(
+      LoginWithGoogleRequested event, Emitter<LoginState> emit) async {
+    emit(LoginLoadInProgress());
+    final response = await _authenticationRepository.signUpWithGoogle();
+    if (isClosed) return;
+    response.fold((l) => emit(LoginFailure(l)), (r) {
+      emit(LoginWithGoogleSuccess(
+        "${AppString.welcome} ${_authenticationRepository.getUserData().fullName}",
+      ));
+    });
   }
 }

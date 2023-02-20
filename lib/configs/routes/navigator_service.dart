@@ -6,4 +6,5 @@ class NavigatorService {
   GlobalKey<NavigatorState> get navigatorKey => _navigatorKey;
 
   NavigatorState get navigator => _navigatorKey.currentState!;
+  BuildContext? get context => _navigatorKey.currentState!.context;
 }

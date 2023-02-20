@@ -1,6 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:freezed_annotation/freezed_annotation.dart';
-
 import 'package:todo_app_flutter/constants/db_keys.dart';
 import 'package:todo_app_flutter/data/models/todo_categories/todo_categories_model.dart';
 
@@ -8,6 +7,9 @@ part 'todo_model.g.dart';
 
 @JsonSerializable()
 class TodoModel {
+  @JsonKey(name: DbKeys.uuid)
+  final String uuid;
+
   @JsonKey(name: DbKeys.uId)
   final String uId;
 
@@ -24,27 +26,28 @@ class TodoModel {
   final DateTime eventStartDate;
 
   @JsonKey(name: DbKeys.eventEndDate)
-  final DateTime? eventEndDate;
-  
-  @JsonKey(name: DbKeys.eventStartTime)
-  final DateTime eventStartTime;
-
-  @JsonKey(name: DbKeys.eventEndTime)
-  final DateTime? eventEndTime;
+  final DateTime eventEndDate;
 
   @JsonKey(name: DbKeys.isEventCompleted)
   final bool isCompleted;
 
+  @JsonKey(name: DbKeys.createdAt)
+  final DateTime createdAt;
+
+  @JsonKey(name: DbKeys.isSyncedWithGoogleCalendar)
+  final bool isSyncedWithGoogleCalendar;
+
   const TodoModel({
+    required this.uuid,
     required this.uId,
     required this.todoCategoriesModel,
     required this.title,
     required this.description,
     required this.eventStartDate,
-     this.eventEndDate,
-    required this.eventStartTime,
-     this.eventEndTime,
+    required this.eventEndDate,
     required this.isCompleted,
+    required this.createdAt,
+    required this.isSyncedWithGoogleCalendar,
   });
 
   factory TodoModel.fromJson(Map<String, dynamic> json) =>

@@ -9,6 +9,8 @@ class DbKeys {
   static const String fullName = 'full_name';
   static const String dob = 'date_of_birth';
   static const String uId = 'uid';
+  static const String uuid = 'uuid';
+  static const String profilePicture = 'profile_picture';
 
   //Categories
   static const String category = 'category';
@@ -24,4 +26,7 @@ class DbKeys {
   static const String isEventCompleted = 'is_event_completed';
   static const String eventTitle = 'event_title';
   static const String eventDescription = 'event_description';
+  static const String createdAt = 'created_at';
+  static const String isSyncedWithGoogleCalendar =
+      'is_synced_with_google_calendar';
 }

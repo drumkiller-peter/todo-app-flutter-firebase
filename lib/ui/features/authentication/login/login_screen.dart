@@ -6,8 +6,8 @@ import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:todo_app_flutter/bloc/login/login_bloc.dart';
 import 'package:todo_app_flutter/configs/dependency_injection/dependency_injection.dart';
 import 'package:todo_app_flutter/configs/enum/app_enum.dart';
+import 'package:todo_app_flutter/configs/routes/app_routes.dart';
 import 'package:todo_app_flutter/configs/routes/navigator_service.dart';
-import 'package:todo_app_flutter/configs/routes/routes.dart';
 import 'package:todo_app_flutter/constants/app_color.dart';
 import 'package:todo_app_flutter/constants/app_string.dart';
 import 'package:todo_app_flutter/constants/app_text_theme.dart';
@@ -139,7 +139,7 @@ class LoginScreen extends StatelessWidget {
                           alignment: Alignment.centerRight,
                           child: AppText(
                             AppString.forgotPassword,
-                            style: AppTextTheme.captionSmall.copyWith(
+                            style: AppTextTheme.caption.copyWith(
                               color: AppColor.primary,
                               fontWeight: FontWeight.w600,
                             ),
@@ -181,11 +181,9 @@ class LoginScreen extends StatelessWidget {
                           children: [
                             AppIconButton(
                               onTap: () {
-                                AppSnackBar.showSnackbar(
-                                  context,
-                                  AppString.serviceNotAvailable,
-                                  MessageType.warning,
-                                );
+                                context
+                                    .read<LoginBloc>()
+                                    .add(LoginWithGoogleRequested());
                               },
                               svgPath: Assets.images.svg.google,
                             ),

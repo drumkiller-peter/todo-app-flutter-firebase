@@ -26,3 +26,11 @@ class LoginSuccess extends LoginState {
   @override
   List<Object?> get props => [success];
 }
+class LoginWithGoogleSuccess extends LoginState {
+  final String success;
+
+  LoginWithGoogleSuccess(this.success);
+
+  @override
+  List<Object?> get props => [success];
+}

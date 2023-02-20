@@ -67,6 +67,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '111636486846',
     projectId: 'todo-app-flutter-firebas-d71aa',
     storageBucket: 'todo-app-flutter-firebas-d71aa.appspot.com',
+    androidClientId: '111636486846-lcn4dg2mpm0gl7glnk6vdkqmr3ncotk2.apps.googleusercontent.com',
     iosClientId: '111636486846-hu18gpdilciqdql4gvorlaefvvhp7suq.apps.googleusercontent.com',
     iosBundleId: 'com.example.todoAppFlutter',
   );
@@ -77,6 +78,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '111636486846',
     projectId: 'todo-app-flutter-firebas-d71aa',
     storageBucket: 'todo-app-flutter-firebas-d71aa.appspot.com',
+    androidClientId: '111636486846-lcn4dg2mpm0gl7glnk6vdkqmr3ncotk2.apps.googleusercontent.com',
     iosClientId: '111636486846-hu18gpdilciqdql4gvorlaefvvhp7suq.apps.googleusercontent.com',
     iosBundleId: 'com.example.todoAppFlutter',
   );

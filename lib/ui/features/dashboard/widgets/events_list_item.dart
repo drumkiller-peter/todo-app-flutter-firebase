@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:todo_app_flutter/configs/app_extension/date_time_extension.dart';
 import 'package:todo_app_flutter/constants/app_color.dart';
 import 'package:todo_app_flutter/data/models/create_todo/todo_model.dart';
+import 'package:todo_app_flutter/gen/assets.gen.dart';
 import 'package:todo_app_flutter/ui/common/app_text.dart';
 import 'package:todo_app_flutter/ui/features/create_todos/widgets/get_category_icon_widget.dart';
 
@@ -28,8 +30,22 @@ class EventsItem extends StatelessWidget {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              GetCategoryIcon(
-                categoryId: todoModel.todoCategoriesModel.categoryId,
+              Stack(
+                children: [
+                  GetCategoryIcon(
+                    categoryId: todoModel.todoCategoriesModel.categoryId,
+                  ),
+                  Positioned(
+                    right: 0,
+                    bottom: 0,
+                    child: SvgPicture.asset(
+                      Assets.images.svg.collab,
+                      height: 14,
+                      width: 14,
+                      color: AppColor.cyan,
+                    ),
+                  ),
+                ],
               ),
               const SizedBox(
                 width: 8,
@@ -62,11 +78,11 @@ class EventsItem extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     AppText(
-                      todoModel.eventStartTime.getTimeOnly(),
+                      todoModel.eventStartDate.getTimeOnly(),
                       style: textTheme.caption?.copyWith(color: AppColor.blue),
                     ),
                     AppText(
-                      todoModel.eventEndTime?.getTimeOnly() ?? "",
+                      todoModel.eventEndDate.getTimeOnly(),
                       style: textTheme.caption?.copyWith(color: AppColor.blue),
                     ),
                   ],
