@@ -19,9 +19,7 @@ class AuthenticationRepository {
   final FirebaseAuth _firebase = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final GoogleSignIn _googleSignIn = GoogleSignIn(
-    scopes: [
-      CalendarApi.calendarScope,
-    ],
+    scopes: [CalendarApi.calendarScope],
   );
 
   final AppPreference _appPreference = getIt.get<AppPreference>();
@@ -110,8 +108,7 @@ class AuthenticationRepository {
       //Making Sure that we SignOut the user first
       await _googleSignIn.signOut();
       final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
-      final response = await _googleSignIn.authenticatedClient();
-      print("#################  $response");
+      await _googleSignIn.authenticatedClient();
 
       if (googleUser != null) {
         // Obtain the auth details from the request

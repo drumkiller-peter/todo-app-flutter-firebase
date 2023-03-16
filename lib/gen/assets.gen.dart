@@ -67,6 +67,18 @@ class $AssetsImagesSvgGen {
   /// File path: assets/images/svg/history.svg
   String get history => 'assets/images/svg/history.svg';
 
+  /// File path: assets/images/svg/ic_calendar.svg
+  String get icCalendar => 'assets/images/svg/ic_calendar.svg';
+
+  /// File path: assets/images/svg/ic_edit.svg
+  String get icEdit => 'assets/images/svg/ic_edit.svg';
+
+  /// File path: assets/images/svg/ic_home.svg
+  String get icHome => 'assets/images/svg/ic_home.svg';
+
+  /// File path: assets/images/svg/ic_search.svg
+  String get icSearch => 'assets/images/svg/ic_search.svg';
+
   /// File path: assets/images/svg/karya_logo.svg
   String get karyaLogo => 'assets/images/svg/karya_logo.svg';
 
@@ -90,6 +102,10 @@ class $AssetsImagesSvgGen {
         google,
         highinflutter,
         history,
+        icCalendar,
+        icEdit,
+        icHome,
+        icSearch,
         karyaLogo,
         linkedIn,
         logout,

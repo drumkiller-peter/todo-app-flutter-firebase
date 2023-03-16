@@ -3,6 +3,7 @@ import 'package:todo_app_flutter/data/models/create_todo/todo_model.dart';
 import 'package:todo_app_flutter/ui/features/authentication/login/login_screen.dart';
 import 'package:todo_app_flutter/ui/features/authentication/sign_up/sign_up_screen.dart';
 import 'package:todo_app_flutter/ui/features/create_todos/screen/create_todo_screen.dart';
+import 'package:todo_app_flutter/ui/features/dashboard/screen/all_tasks_for_today_screen.dart';
 import 'package:todo_app_flutter/ui/features/dashboard/screen/dashboard_screen.dart';
 import 'package:todo_app_flutter/ui/features/home/screens/home_screen.dart';
 import 'package:todo_app_flutter/ui/features/profile/screen/profile_screen.dart';
@@ -20,6 +21,7 @@ class AppRoutes {
   static const String profile = 'profile';
   static const String splashScreen = 'splashScreen';
   static const String todoDetails = 'todoDetails';
+  static const String allTasksForToday = 'allTasksForToday';
 
   static Route<dynamic> onGenerateRoute(RouteSettings routeSettings) {
     switch (routeSettings.name) {
@@ -40,6 +42,10 @@ class AppRoutes {
       case todoDetails:
         return _getMaterialRoute( TodoDetailsScreen(
           todoModel: routeSettings.arguments as TodoModel,
+        ));
+      case allTasksForToday:
+        return _getMaterialRoute( AllTasksForTodayScreen(
+          allTodosForToday: routeSettings.arguments as List<TodoModel>,
         ));
       default:
         return _getMaterialRoute(

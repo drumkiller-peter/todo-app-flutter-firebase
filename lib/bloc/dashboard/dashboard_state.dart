@@ -20,11 +20,11 @@ class DashboardFailure extends DashboardState {
 }
 
 class DashboardSuccess extends DashboardState {
-  final List<TodoModel> todoModelList;
+  final List<TodoModel> allTodosForToday;
   DashboardSuccess({
-    required this.todoModelList,
+    required this.allTodosForToday,
   });
 
   @override
-  List<Object?> get props => [todoModelList];
+  List<Object?> get props => [allTodosForToday];
 }

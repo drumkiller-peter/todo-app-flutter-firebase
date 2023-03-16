@@ -25,7 +25,7 @@ class TodoCategoriesModel {
 
   factory TodoCategoriesModel.empty() => const TodoCategoriesModel(
         category: "",
-        categoryId: 0,
+        categoryId: 1,
         categoryDescription: "",
       );
 }

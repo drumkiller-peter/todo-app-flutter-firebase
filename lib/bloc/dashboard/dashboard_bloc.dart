@@ -26,9 +26,13 @@ class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
     try {
       todoListSubs?.cancel();
       await emit.forEach(
-        _todoRepository
-            .fetchTodoForUser(_authenticationRepository.getUserData().uid),
-        onData: (todos) => DashboardSuccess(todoModelList: todos),
+        _todoRepository.fetchTodoForUser(
+            _authenticationRepository.getUserData().uid, event.dateTime),
+        onData: (todos) {
+          return DashboardSuccess(
+            allTodosForToday: todos,
+          );
+        },
         onError: (error, stackTrace) => DashboardFailure(
           error: error.toString(),
         ),

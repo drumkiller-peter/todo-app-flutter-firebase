@@ -83,10 +83,20 @@ class TodoRepository {
     }
   }
 
-  Stream<List<TodoModel>> fetchTodoForUser(String uId) {
+  Stream<List<TodoModel>> fetchTodoForUser(String uId, DateTime date) {
+    log(date.toString());
     return _firebaseFirestore
         .collection(DbKeys.event)
         .where(DbKeys.uId, isEqualTo: uId)
+        .where(
+          DbKeys.eventStartDate,
+          isGreaterThanOrEqualTo: Timestamp.fromDate(date),
+          isLessThan: Timestamp.fromDate(
+            date.add(
+              const Duration(days: 1),
+            ),
+          ),
+        )
         .snapshots()
         .map((event) {
       return event.docs.map((e) => TodoModel.fromJson(e.data())).toList();
