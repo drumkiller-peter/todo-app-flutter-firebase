@@ -16,3 +16,9 @@ This project is a Full Fledged TODO App with Notifications and Firebase setup us
 - Users can view, update and delete their events.
 - Google Sign in
 - See Completion rate, history of their completed tasks
+
+
+## Video
+
+https://user-images.githubusercontent.com/67107185/225540761-e892e457-0bfc-461d-b63b-c212e4d2e94e.mp4
+
