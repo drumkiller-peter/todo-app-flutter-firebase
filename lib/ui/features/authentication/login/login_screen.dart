@@ -35,6 +35,7 @@ class LoginScreen extends StatelessWidget {
         listenWhen: (previous, current) =>
             current is LoginFailure ||
             current is LoginSuccess ||
+            current is LoginWithGoogleSuccess ||
             current is LoginLoadInProgress,
         listener: (context, state) {
           if (state is LoginFailure) {
@@ -44,8 +45,7 @@ class LoginScreen extends StatelessWidget {
               state.error,
               MessageType.error,
             );
-          }
-          if (state is LoginSuccess) {
+          } else if (state is LoginSuccess) {
             AppSnackBar.showSnackbar(
               context,
               state.success,
@@ -55,8 +55,17 @@ class LoginScreen extends StatelessWidget {
                   AppRoutes.home,
                   (route) => false,
                 );
-          }
-          if (state is LoginLoadInProgress) {
+          } else if (state is LoginWithGoogleSuccess) {
+            AppSnackBar.showSnackbar(
+              context,
+              state.success,
+              MessageType.success,
+            );
+            getIt.get<NavigatorService>().navigator.pushNamedAndRemoveUntil(
+                  AppRoutes.home,
+                  (route) => false,
+                );
+          } else if (state is LoginLoadInProgress) {
             AppLoadingDialog.openLoadingDialog(context);
           }
         },
@@ -168,7 +177,7 @@ class LoginScreen extends StatelessWidget {
                         Center(
                           child: AppText(
                             "OR",
-                            style: textTheme.bodyText1!.copyWith(
+                            style: textTheme.bodyLarge!.copyWith(
                                 color: AppColor.primary,
                                 fontWeight: FontWeight.w600),
                           ),
@@ -216,12 +225,12 @@ class LoginScreen extends StatelessWidget {
                           child: RichText(
                             text: TextSpan(
                               text: "Didn't have an account? ",
-                              style: textTheme.bodyText1!
+                              style: textTheme.bodyLarge!
                                   .copyWith(letterSpacing: 0.5),
                               children: <TextSpan>[
                                 TextSpan(
                                   text: AppString.signUp,
-                                  style: textTheme.bodyText1!.copyWith(
+                                  style: textTheme.bodyLarge!.copyWith(
                                     letterSpacing: 0.5,
                                     color: Colors.cyanAccent,
                                   ),

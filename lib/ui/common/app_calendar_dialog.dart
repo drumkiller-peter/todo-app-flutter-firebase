@@ -62,10 +62,10 @@ class AppCalendarDialog {
       showTitleActions: true,
       locale: LocaleType.en,
       minTime: DateTime.now().subtract(
-        const Duration(days: 1),
+        const Duration(days: 2),
       ),
       maxTime: DateTime.now().add(
-        const Duration(days: 1),
+        const Duration(days: 2),
       ),
       theme: DatePickerTheme(
         backgroundColor: AppColor.bgColor,

@@ -4,6 +4,17 @@ import 'package:todo_app_flutter/constants/app_color.dart';
 class AppTextTheme {
   AppTextTheme._();
 
+  static TextStyle superHeader = const TextStyle(
+    fontSize: 54,
+    color: AppColor.white,
+    fontWeight: FontWeight.w500,
+  );
+  static TextStyle superHeader44 = const TextStyle(
+    fontSize: 44,
+    color: AppColor.white,
+    fontWeight: FontWeight.w500,
+  );
+
   static TextStyle heading1 = const TextStyle(
     fontSize: 29,
     color: AppColor.white,

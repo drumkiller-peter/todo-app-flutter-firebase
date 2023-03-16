@@ -38,6 +38,7 @@ class App extends StatelessWidget {
         initialRoute: AppRoutes.splashScreen,
         onGenerateRoute: AppRoutes.onGenerateRoute,
         home: const SplashScreen(),
+        debugShowCheckedModeBanner: false,
       ),
     );
   }

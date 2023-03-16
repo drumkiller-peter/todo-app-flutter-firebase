@@ -48,7 +48,11 @@ class _DashboardScreenState extends State<DashboardScreen>
       create: (context) => DashboardBloc(
         context.read<TodoRepository>(),
         context.read<AuthenticationRepository>(),
-      )..add(DashboardEventGetTodoRequested()),
+      )..add(
+          DashboardEventGetTodoRequested(
+            dateTime: DateTime.now(),
+          ),
+        ),
       child: Builder(builder: (context) {
         return BlocListener<DashboardBloc, DashboardState>(
           listenWhen: (previous, current) => current is DashboardFailure,
@@ -76,7 +80,7 @@ class _DashboardScreenState extends State<DashboardScreen>
                     "Upcoming tasks",
                     style: Theme.of(context)
                         .textTheme
-                        .bodyText1
+                        .bodyLarge
                         ?.copyWith(color: AppColor.white),
                   ),
                 ),
@@ -99,18 +103,24 @@ class _DashboardScreenState extends State<DashboardScreen>
                                         .navigator
                                         .pushNamed(
                                           AppRoutes.todoDetails,
-                                          arguments: state.todoModelList[index],
+                                          arguments:
+                                              state.allTodosForToday[index],
                                         );
                                   },
                                   child: EventsItem(
-                                    todoModel: state.todoModelList[index],
+                                    todoModel: state.allTodosForToday[index],
                                   ),
                                 ),
-                                childCount: state.todoModelList.length,
+                                childCount: state.allTodosForToday.length,
                               ),
                             )
                           : const SliverToBoxAdapter(child: SizedBox());
                 },
+              ),
+              const SliverToBoxAdapter(
+                child: SizedBox(
+                  height: 12,
+                ),
               ),
             ],
           ),

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:todo_app_flutter/constants/app_color.dart';
-import 'package:todo_app_flutter/constants/app_string.dart';
 import 'package:todo_app_flutter/ui/common/app_text.dart';
 
 class PercentageItem extends StatelessWidget {
@@ -9,11 +8,15 @@ class PercentageItem extends StatelessWidget {
       {super.key,
       required this.title,
       required this.percent,
-      required this.value});
+      required this.value,
+      this.radius,
+      this.percentValueStyle});
 
   final String title;
   final double percent;
   final String value;
+  final double? radius;
+  final TextStyle? percentValueStyle;
 
   @override
   Widget build(BuildContext context) {
@@ -21,14 +24,15 @@ class PercentageItem extends StatelessWidget {
     return Column(
       children: [
         CircularPercentIndicator(
-          radius: 40.0,
+          radius: radius ?? 40.0,
           animation: true,
           animationDuration: 1200,
           lineWidth: 5.0,
           percent: percent,
           center: Text(
             value,
-            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
+            style: percentValueStyle ??
+                const TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
           ),
           circularStrokeCap: CircularStrokeCap.butt,
           backgroundColor: AppColor.bgColorLight,
@@ -38,8 +42,8 @@ class PercentageItem extends StatelessWidget {
           height: 8,
         ),
         AppText(
-          AppString.taskCompletionRate,
-          style: textTheme.caption,
+          title,
+          style: textTheme.bodySmall,
           textAlign: TextAlign.center,
         )
       ],

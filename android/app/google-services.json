@@ -14,7 +14,15 @@
       },
       "oauth_client": [
         {
-          "client_id": "111636486846-kemhebph0tjeq3f8jdp3il46vqtmfull.apps.googleusercontent.com",
+          "client_id": "111636486846-lcn4dg2mpm0gl7glnk6vdkqmr3ncotk2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.todo_app_flutter",
+            "certificate_hash": "8cb238fd069dbce2f7422e5800b1d875d135a157"
+          }
+        },
+        {
+          "client_id": "111636486846-39ies2p0qhrhjiev8dbmpicaa88dnulm.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -27,7 +35,7 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "111636486846-kemhebph0tjeq3f8jdp3il46vqtmfull.apps.googleusercontent.com",
+              "client_id": "111636486846-39ies2p0qhrhjiev8dbmpicaa88dnulm.apps.googleusercontent.com",
               "client_type": 3
             },
             {

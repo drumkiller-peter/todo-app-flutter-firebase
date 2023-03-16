@@ -14,6 +14,10 @@ extension DateTimeExtension on DateTime {
     return DateFormat(AppConstants.getFullDateWithTime).format(this);
   }
 
+  String getDateWithNames() {
+    return DateFormat("dd MMM, yyyy").format(this);
+  }
+
   /// returns in 'hh:mm' format
   String getTimeOnly() {
     return DateFormat(AppConstants.defaultTimeFormat).format(this);

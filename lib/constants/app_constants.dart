@@ -52,4 +52,8 @@ class AppConstants {
   //Google Client id
   static const String googleClientId =
       "111636486846-lcn4dg2mpm0gl7glnk6vdkqmr3ncotk2.apps.googleusercontent.com";
+  static const String defaultAppChannelId = 'Todo_app_default_channel';
+  static const String defaultAppChannelName = 'Todo_app_default_channel_name';
+  static const String defaultAppChannelDescription =
+      'Todo App Channel Description';
 }
