@@ -10,10 +10,12 @@ import 'package:todo_app_flutter/data/repository/todo_repository.dart';
 import 'package:todo_app_flutter/ui/common/app_bottom_sheet.dart';
 import 'package:todo_app_flutter/ui/common/app_button.dart';
 import 'package:todo_app_flutter/ui/common/app_custom_app_bar.dart';
+import 'package:todo_app_flutter/ui/common/app_loading_dialog.dart';
 import 'package:todo_app_flutter/ui/common/app_snackbar.dart';
 import 'package:todo_app_flutter/ui/common/app_text_field.dart';
 import 'package:todo_app_flutter/ui/features/create_todos/widgets/categories_bottom_sheet.dart';
 import 'package:todo_app_flutter/ui/features/create_todos/widgets/event_date_picker_block.dart';
+import 'package:todo_app_flutter/ui/features/create_todos/widgets/media_upload_block.dart';
 import 'package:todo_app_flutter/ui/features/create_todos/widgets/sync_with_calendar_block.dart';
 
 class CreateTodoScreen extends StatefulWidget {
@@ -35,7 +37,11 @@ class _CreateTodoScreenState extends State<CreateTodoScreen>
       child: Builder(builder: (context) {
         return BlocListener<CreateTodoBloc, CreateTodoState>(
           listenWhen: (previous, current) =>
-              current is CreateTodoFailure || current is CreateTodoSuccess,
+              current is CreateTodoFailure ||
+              current is CreateTodoSuccess ||
+              current is CreateTodoMediaUploadLoadInProgress ||
+              current is CreateTodoMediaUploadSuccess ||
+              current is CreateTodoMediaUploadFailure,
           listener: (context, state) {
             if (state is CreateTodoFailure) {
               AppSnackBar.showSnackbar(
@@ -43,13 +49,23 @@ class _CreateTodoScreenState extends State<CreateTodoScreen>
                 state.error,
                 MessageType.error,
               );
-            }
-            if (state is CreateTodoSuccess) {
+            } else if (state is CreateTodoSuccess) {
               AppSnackBar.showSnackbar(
                 context,
                 state.success,
                 MessageType.success,
               );
+            } else if (state is CreateTodoMediaUploadFailure) {
+              Navigator.pop(context);
+              AppSnackBar.showSnackbar(
+                context,
+                state.error,
+                MessageType.error,
+              );
+            } else if (state is CreateTodoMediaUploadLoadInProgress) {
+              AppLoadingDialog.openLoadingDialog(context);
+            } else if (state is CreateTodoMediaUploadSuccess) {
+              Navigator.pop(context);
             }
           },
           child: Scaffold(
@@ -63,6 +79,7 @@ class _CreateTodoScreenState extends State<CreateTodoScreen>
                 child: Form(
                   key: context.read<CreateTodoBloc>().createEventFormKey,
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       AppTextField(
                         validator: FormBuilderValidators.required(
@@ -127,6 +144,10 @@ class _CreateTodoScreenState extends State<CreateTodoScreen>
                       ),
                       const SyncWithCalendarBlock(),
                       const SizedBox(
+                        height: 16,
+                      ),
+                      const MediaUploadBlock(),
+                      const SizedBox(
                         height: 32,
                       ),
                       BlocBuilder<CreateTodoBloc, CreateTodoState>(
@@ -134,19 +155,24 @@ class _CreateTodoScreenState extends State<CreateTodoScreen>
                             current is CreateTodoLoadInProgress ||
                             current is CreateTodoSuccess,
                         builder: (context, state) {
-                          return AppPrimaryButton(
-                            width: 210,
-                            title: state is CreateTodoLoadInProgress
-                                ? AppString.savingTask
-                                : AppString.createTodo,
-                            isEnabled: true,
-                            onPressed: () {
-                              context
-                                  .read<CreateTodoBloc>()
-                                  .add(CreateTodoRequested());
-                            },
+                          return Center(
+                            child: AppPrimaryButton(
+                              width: 210,
+                              title: state is CreateTodoLoadInProgress
+                                  ? AppString.savingTask
+                                  : AppString.createTodo,
+                              isEnabled: true,
+                              onPressed: () {
+                                context.read<CreateTodoBloc>().add(
+                                      CreateTodoRequested(),
+                                    );
+                              },
+                            ),
                           );
                         },
+                      ),
+                      const SizedBox(
+                        height: 16,
                       ),
                     ],
                   ),

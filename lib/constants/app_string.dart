@@ -57,12 +57,16 @@ class AppString {
   static const String eventInvalidDateTimeValidationMessage =
       "Event end time cannot be before start time";
 
+  static const String uploadImage = "Upload image";
+  static const String mediaUploadFailure =
+      "Couldn't upload media. Please try later.";
+
   //Profile Screen
   static const String changePassword = "Change password";
   static const String signOut = "Sign out";
   static const String theme = "Theme";
   static const String taskCompletionRate = "Completion rate";
-  static const String syncWithCalendar = "Sync with calendar";
+  static const String syncWithCalendar = "Sync with Google calendar";
   static const String taskCompletionHistory = "Completion history";
   static const String taskCollaborationWithOtherUsers =
       "Collaboration with other users";

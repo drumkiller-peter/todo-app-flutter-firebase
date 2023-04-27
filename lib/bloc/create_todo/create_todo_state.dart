@@ -72,3 +72,39 @@ class CreateTodoSyncCalendarChanged extends CreateTodoState {
   @override
   List<Object?> get props => [isEnabled];
 }
+
+class CreateTodoMediaUploadSuccess extends CreateTodoState {
+  final String fileUrl;
+  final bool isImage;
+  final String fileName;
+  CreateTodoMediaUploadSuccess({
+    required this.fileUrl,
+    required this.isImage,
+    required this.fileName,
+  });
+
+  @override
+  List<Object?> get props => [fileUrl, isImage];
+}
+
+class CreateTodoMediaUploadLoadInProgress extends CreateTodoState {}
+
+class CreateTodoMediaUploadOnSwitchChanged extends CreateTodoState {
+  final bool isEnabled;
+  CreateTodoMediaUploadOnSwitchChanged({
+    required this.isEnabled,
+  });
+
+  @override
+  List<Object?> get props => [isEnabled];
+}
+
+class CreateTodoMediaUploadFailure extends CreateTodoState {
+  final String error;
+  CreateTodoMediaUploadFailure({
+    required this.error,
+  });
+
+  @override
+  List<Object?> get props => [error];
+}

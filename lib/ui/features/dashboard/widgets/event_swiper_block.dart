@@ -26,6 +26,7 @@ class EventSwiperItem extends StatelessWidget {
                       ? CardSwiper(
                           maxAngle: 90,
                           isLoop: true,
+                          numberOfCardsDisplayed: state.allTodosForToday.length,
                           isDisabled: state.allTodosForToday.length == 1,
                           padding: const EdgeInsets.only(top: 0, bottom: 36),
                           cards: state.allTodosForToday

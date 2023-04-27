@@ -9,6 +9,7 @@ import 'package:todo_app_flutter/ui/features/home/screens/home_screen.dart';
 import 'package:todo_app_flutter/ui/features/profile/screen/profile_screen.dart';
 import 'package:todo_app_flutter/ui/features/splash_screen/splash_screen.dart';
 import 'package:todo_app_flutter/ui/features/todo_detail/screens/todo_details.dart';
+import 'package:todo_app_flutter/ui/features/video_player_screen/new_video_player_screen.dart';
 
 class AppRoutes {
   AppRoutes._();
@@ -22,6 +23,7 @@ class AppRoutes {
   static const String splashScreen = 'splashScreen';
   static const String todoDetails = 'todoDetails';
   static const String allTasksForToday = 'allTasksForToday';
+  static const String videoScreen = 'videoScreen';
 
   static Route<dynamic> onGenerateRoute(RouteSettings routeSettings) {
     switch (routeSettings.name) {
@@ -39,12 +41,16 @@ class AppRoutes {
         return _getMaterialRoute(const ProfileScreen());
       case splashScreen:
         return _getMaterialRoute(const SplashScreen());
+      case videoScreen:
+        return _getMaterialRoute(NewVideoPlayerScreen(
+          source: routeSettings.arguments as String,
+        ));
       case todoDetails:
-        return _getMaterialRoute( TodoDetailsScreen(
+        return _getMaterialRoute(TodoDetailsScreen(
           todoModel: routeSettings.arguments as TodoModel,
         ));
       case allTasksForToday:
-        return _getMaterialRoute( AllTasksForTodayScreen(
+        return _getMaterialRoute(AllTasksForTodayScreen(
           allTodosForToday: routeSettings.arguments as List<TodoModel>,
         ));
       default:

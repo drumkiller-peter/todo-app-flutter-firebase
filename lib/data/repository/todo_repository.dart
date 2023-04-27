@@ -1,8 +1,10 @@
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:googleapis/calendar/v3.dart';
 import 'package:todo_app_flutter/configs/dependency_injection/dependency_injection.dart';
 import 'package:todo_app_flutter/constants/app_string.dart';
@@ -19,6 +21,8 @@ class TodoRepository {
   final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
   final AuthenticationRepository _authenticationRepository =
       AuthenticationRepository();
+
+  final FirebaseStorage _firebaseStorage = FirebaseStorage.instance;
 
   List<TodoCategoriesModel> getCategories() {
     return _appPreference.getCategories();
@@ -153,6 +157,22 @@ class TodoRepository {
       return right(AppString.markedAsCompletedSuccess);
     } on FirebaseException catch (e) {
       return left(e.message!);
+    }
+  }
+
+  Future<Either<String, String>> uploadImage(
+      File imageFile, String fileName) async {
+    try {
+      // Get the reference to the root folder of your storage and
+      // Create a new subfolder using the [fileName] attribute as the name
+      //of the new folder to store the images.
+      final Reference reference =
+          _firebaseStorage.ref().child('medias/$fileName');
+      final UploadTask uploadTask = reference.putFile(imageFile);
+      final TaskSnapshot downloadUrl = (await uploadTask);
+      return right(await downloadUrl.ref.getDownloadURL());
+    } on FirebaseException catch (e) {
+      return left(e.message.toString());
     }
   }
 }

@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:equatable/equatable.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo_app_flutter/configs/app_extension/date_time_extension.dart';
@@ -65,6 +66,7 @@ class CreateTodoBloc extends Bloc<CreateTodoEvent, CreateTodoState> {
     );
 
     on<CreateTodoRequested>(_createTodo);
+    on<CreateTodoMediaUploadRequested>(_uploadMedia);
   }
 
   final TodoRepository _todoRepository;
@@ -78,12 +80,14 @@ class CreateTodoBloc extends Bloc<CreateTodoEvent, CreateTodoState> {
 
   DateTime? eventStartDateTimeToSend;
   DateTime? eventEndDateTimeToSend;
+  bool? isMediaImage;
 
   GlobalKey<FormState> createEventFormKey = GlobalKey<FormState>();
   TodoCategoriesModel categoriesModel = TodoCategoriesModel.empty();
   bool enableSyncWithGoogleCalendar = false;
   bool hasSyncedWithCalendarSuccess = false;
   String eventDateTimeError = "";
+  String? uploadedImageUrl;
 
   Future<void> _createTodo(
       CreateTodoRequested event, Emitter<CreateTodoState> emit) async {
@@ -106,6 +110,8 @@ class CreateTodoBloc extends Bloc<CreateTodoEvent, CreateTodoState> {
           isCompleted: false,
           createdAt: DateTime.now(),
           isSyncedWithGoogleCalendar: enableSyncWithGoogleCalendar,
+          mediaUrl: uploadedImageUrl,
+          isImage: isMediaImage,
         );
 
         final response = await _todoRepository.createTodo(createTodoModel);
@@ -146,5 +152,46 @@ class CreateTodoBloc extends Bloc<CreateTodoEvent, CreateTodoState> {
       return false;
     }
     return true;
+  }
+
+  Future<void> _uploadMedia(CreateTodoMediaUploadRequested event,
+      Emitter<CreateTodoState> emit) async {
+    try {
+      emit(CreateTodoMediaUploadOnSwitchChanged(isEnabled: event.isEnabled));
+      if (event.isEnabled) {
+        emit(CreateTodoMediaUploadLoadInProgress());
+        FilePickerResult? result = await FilePicker.platform.pickFiles(
+            type: FileType.custom,
+            allowedExtensions: ["jpg", "png", "mp4", "jpeg"]);
+        if (result != null) {
+          File file = File(result.files.single.path!);
+          isMediaImage = !file.path.endsWith(".mp4");
+          final fileName = result.files.single.name;
+          final response = await _todoRepository.uploadImage(file, fileName);
+          response.fold(
+              (l) => emit(CreateTodoMediaUploadFailure(
+                  error: AppString.mediaUploadFailure)), (r) {
+            uploadedImageUrl = r;
+            emit(
+              CreateTodoMediaUploadSuccess(
+                fileUrl: r,
+                isImage: isMediaImage ?? false,
+                fileName: fileName,
+              ),
+            );
+          });
+        } else {
+          emit(CreateTodoMediaUploadOnSwitchChanged(isEnabled: false));
+          emit(CreateTodoMediaUploadFailure(
+              error: AppString.mediaUploadFailure));
+        }
+      } else {
+        emit(CreateTodoMediaUploadOnSwitchChanged(isEnabled: event.isEnabled));
+      }
+    } catch (e) {
+      emit(
+        CreateTodoMediaUploadFailure(error: AppString.mediaUploadFailure),
+      );
+    }
   }
 }

@@ -1,4 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:todo_app_flutter/configs/app_extension/date_time_extension.dart';
@@ -7,6 +8,7 @@ import 'package:todo_app_flutter/constants/app_text_theme.dart';
 import 'package:todo_app_flutter/data/models/create_todo/todo_model.dart';
 import 'package:todo_app_flutter/gen/assets.gen.dart';
 import 'package:todo_app_flutter/ui/common/app_text.dart';
+import 'package:todo_app_flutter/ui/features/video_player_screen/mini_video_player.dart';
 
 class EventCard extends StatelessWidget {
   const EventCard({
@@ -79,19 +81,33 @@ class EventCard extends StatelessWidget {
           AppText(
             todoModel.description,
             style: AppTextTheme.bodyText1,
-            maxLines: 5,
+            maxLines: todoModel.mediaUrl != null ? 1 : 5,
             overflow: TextOverflow.ellipsis,
           ),
+          todoModel.mediaUrl != null
+              ? todoModel.isImage ?? false
+                  ? AspectRatio(
+                      aspectRatio: 16 / 9,
+                      child: CachedNetworkImage(
+                        imageUrl: todoModel.mediaUrl!,
+                        fit: BoxFit.cover,
+                      ),
+                    )
+                  : AspectRatio(
+                      aspectRatio: 16 / 12,
+                      child: MiniVideoPlayerScreen(source: todoModel.mediaUrl!))
+              : const SizedBox.shrink(),
           const SizedBox(
             height: 28,
           ),
           Container(
-              padding: const EdgeInsets.all(8),
-              decoration: BoxDecoration(
-                color: AppColor.pink,
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: AppText(todoModel.todoCategoriesModel.category)),
+            padding: const EdgeInsets.all(8),
+            decoration: BoxDecoration(
+              color: AppColor.pink,
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: AppText(todoModel.todoCategoriesModel.category),
+          ),
           const Spacer(),
           Align(
             alignment: Alignment.centerRight,
