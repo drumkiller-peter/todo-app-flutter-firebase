@@ -23,7 +23,7 @@ class SyncWithCalendarBlock extends StatelessWidget {
                 AppString.syncWithCalendar,
                 style: Theme.of(context)
                     .textTheme
-                    .bodyText2!
+                    .bodyMedium!
                     .copyWith(color: AppColor.greyText),
               ),
             ),

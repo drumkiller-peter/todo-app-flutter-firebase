@@ -4,6 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo_app_flutter/bloc/authentication/auth_bloc.dart';
 import 'package:todo_app_flutter/configs/dependency_injection/dependency_injection.dart';
 import 'package:todo_app_flutter/configs/fcm_helper/firebase_notification_helper.dart';
+import 'package:todo_app_flutter/configs/routes/app_routes.dart';
+import 'package:todo_app_flutter/configs/routes/navigator_service.dart';
 import 'package:todo_app_flutter/constants/app_color.dart';
 import 'package:todo_app_flutter/constants/app_constants.dart';
 import 'package:todo_app_flutter/ui/features/profile/widgets/profile_item.dart';
@@ -57,6 +59,10 @@ class _ProfileItemBlockState extends State<ProfileItemBlock> {
                       .add(AuthenticationLogoutRequested());
                   break;
                 default:
+                  getIt
+                      .get<NavigatorService>()
+                      .navigator
+                      .pushNamed(AppRoutes.videoScreen);
                   print(AppConstants.profileItems[index].title);
               }
             },

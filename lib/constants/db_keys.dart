@@ -30,6 +30,8 @@ class DbKeys {
   static const String createdAt = 'created_at';
   static const String isSyncedWithGoogleCalendar =
       'is_synced_with_google_calendar';
+  static const String mediaUrl = 'media_url';
+  static const String isImage = 'is_image';
 
   //Completion Model
   static const String completedAt = 'completed_at';

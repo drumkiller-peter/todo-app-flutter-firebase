@@ -42,6 +42,12 @@ class TodoModel {
   @JsonKey(name: DbKeys.isSyncedWithGoogleCalendar)
   final bool isSyncedWithGoogleCalendar;
 
+  @JsonKey(name: DbKeys.mediaUrl)
+  final String? mediaUrl;
+
+  @JsonKey(name: DbKeys.isImage)
+  final bool? isImage;
+
   const TodoModel({
     required this.uuid,
     required this.uId,
@@ -53,6 +59,8 @@ class TodoModel {
     required this.isCompleted,
     required this.createdAt,
     required this.isSyncedWithGoogleCalendar,
+    this.mediaUrl,
+    this.isImage,
   });
 
   factory TodoModel.fromJson(Map<String, dynamic> json) =>

@@ -36,3 +36,13 @@ class CreateTodoSyncWithCalendarRequested extends CreateTodoEvent {
   @override
   List<Object?> get props => [isEnabled];
 }
+
+class CreateTodoMediaUploadRequested extends CreateTodoEvent {
+  final bool isEnabled;
+  CreateTodoMediaUploadRequested({
+    required this.isEnabled,
+  });
+
+  @override
+  List<Object?> get props => [isEnabled];
+}

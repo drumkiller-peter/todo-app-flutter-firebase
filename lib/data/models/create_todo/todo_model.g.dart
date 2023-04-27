@@ -22,6 +22,8 @@ TodoModel _$TodoModelFromJson(Map<String, dynamic> json) => TodoModel(
           const TimeStampConverter().fromJson(json['created_at'] as Timestamp),
       isSyncedWithGoogleCalendar:
           json['is_synced_with_google_calendar'] as bool,
+      mediaUrl: json['media_url'] as String?,
+      isImage: json['is_image'] as bool?,
     );
 
 Map<String, dynamic> _$TodoModelToJson(TodoModel instance) => <String, dynamic>{
@@ -37,4 +39,6 @@ Map<String, dynamic> _$TodoModelToJson(TodoModel instance) => <String, dynamic>{
       'is_event_completed': instance.isCompleted,
       'created_at': const TimeStampConverter().toJson(instance.createdAt),
       'is_synced_with_google_calendar': instance.isSyncedWithGoogleCalendar,
+      'media_url': instance.mediaUrl,
+      'is_image': instance.isImage,
     };
